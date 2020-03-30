@@ -11,15 +11,8 @@
 
 3. Stochastic Probabilistic
 Theory
-<Leader>
-[TOC]
 
-# Queueing Theory
-## Inventory
-# Quens
-## REI
-
-2.1. Deterministic(#ch2.1 "")
+2.1. [Deterministic](#ch2.1 "")
 	
 2.2. [Probabilistic](#ch2.2 "")
 
@@ -34,11 +27,16 @@ Notation:
 $$
 \begin{aligned}
 q &= \text{nubmer of units ordered (decision varialbe).}\\
-D &= \text{random variable (demand)} (d\  \text{realisation})\\
+D &= \text{random variable (demand)}\\
+Pr(D = d) &= p(d) \text{ probability realisation} \\
 c(d,q) &= \text{cost function}\\
 \end{aligned}
 $$
-$inline$ math tex
+
+
+
+
+
  
 #### Deterministic Inventory Model <a name="ch2.1"></a>
 
