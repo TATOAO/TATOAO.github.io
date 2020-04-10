@@ -56,6 +56,8 @@ $$
 
 ###### def Graph
 
+test on 20:54
+
 \\(G(R_i) \\) denote the graph of \\(R_i \\), defined by:
 
 $$
