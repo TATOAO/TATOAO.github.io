@@ -2,14 +2,13 @@
 一共有三章:
 
 
-
 ## 第一部分 Linear Problem 问题
 ### Simplex 算法
 ### Duality 对偶性
 
 __Primal__
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_14.png" alt="2020-03-31-MA3252_Linear_optimation_14.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_14.png" alt="2020-03-31-MA3252_Linear_optimation_14.png failed" width="400"/>
 
 __Upper bound__ is easy to find (any feasible \\(x'\\) corresponding \\(c^T x\\))
 
@@ -61,7 +60,7 @@ $$
 - Bipartite		 If nodes can be divided into two sets such that the end nodes for each edge lie in different sets.
 - Node-arc incidence matrix
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_1.png" alt="2020-03-31-MA3252_Linear_optimation_1.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_1.png" alt="2020-03-31-MA3252_Linear_optimation_1.png failed" width="400"/>
 
 
 #### Network Flow Formulation
@@ -93,7 +92,7 @@ And also \\(x_{i,j} \in \{ 0,1 \} \\), \\(x\\) variable only determine which roa
 
 Now: if we relax the binary constrain: From (P1) \\(\to\\) (P2). 
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_2.png" alt="2020-03-31-MA3252_Linear_optimation_2.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_2.png" alt="2020-03-31-MA3252_Linear_optimation_2.png failed" width="400"/>
 
 We have: <br>
 ##### Theorem 
@@ -101,12 +100,12 @@ If there are no negative cycles, then (P2) is also the shortest path problem. (T
 
 
 ###### Negative Cycle:
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_3.png" alt="2020-03-31-MA3252_Linear_optimation_3.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_3.png" alt="2020-03-31-MA3252_Linear_optimation_3.png failed" width="400"/>
 
 
 ##### Three Jug Puzzle Application
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_4.png" alt="2020-03-31-MA3252_Linear_optimation_4.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_4.png" alt="2020-03-31-MA3252_Linear_optimation_4.png failed" width="400"/>
 
 这个也是挺妙的运用。 如何把这个问题转成 最短路径问题: 核心是用坐标表示瓶子的状态： e.g. (5，3)  五升的瓶子有5L水，三升的瓶子有3L水。 然后我们就可以define path 不同瓶子里水倒来倒去。
 
@@ -118,7 +117,7 @@ Question Notation: <br>
 \\(x_i\\) Produce in period \\(i\\) <br>
 \\(I_{i-1}\\) Inventory level. <br>
 \\(c_i\\) cost of producing one unit product <br>
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_5.png" alt="2020-03-31-MA3252_Linear_optimation_5.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_5.png" alt="2020-03-31-MA3252_Linear_optimation_5.png failed" width="400"/>
 
 可以把这个问题拆成 \\(T\\) 个shortest path problem: <br>
 就是可以把每个 \\(d_i\\) 作为一个小终点，然后把所有的solution 加在一起那就是最后的答案了。
@@ -129,33 +128,33 @@ Question Notation: <br>
 
 
 例题： <br>
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_6.png" alt="2020-03-31-MA3252_Linear_optimation_6.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_6.png" alt="2020-03-31-MA3252_Linear_optimation_6.png failed" width="400"/>
 
 待补充。
 
 ##### Duality in shortest path problem
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_7.png" alt="2020-03-31-MA3252_Linear_optimation_7.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_7.png" alt="2020-03-31-MA3252_Linear_optimation_7.png failed" width="400"/>
 
 Example:
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_8.png" alt="2020-03-31-MA3252_Linear_optimation_8.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_8.png" alt="2020-03-31-MA3252_Linear_optimation_8.png failed" width="400"/>
 
 
 Intuitive understanding of the Dual problem:
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_9.png" alt="2020-03-31-MA3252_Linear_optimation_9.png failed" width="400"/> 
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_9.png" alt="2020-03-31-MA3252_Linear_optimation_9.png failed" width="400"/> 
 
 #### Project Management Application
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_10.png" alt="2020-03-31-MA3252_Linear_optimation_10.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_10.png" alt="2020-03-31-MA3252_Linear_optimation_10.png failed" width="400"/>
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_11.png" alt="2020-03-31-MA3252_Linear_optimation_11.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_11.png" alt="2020-03-31-MA3252_Linear_optimation_11.png failed" width="400"/>
 
 
 #### Maximum Flow Problem
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_12.png" alt="2020-03-31-MA3252_Linear_optimation_12.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_12.png" alt="2020-03-31-MA3252_Linear_optimation_12.png failed" width="400"/>
 
-<img src="post_asset/2020-03-31-MA3252_Linear_optimation_13.png" alt="2020-03-31-MA3252_Linear_optimation_13.png failed" width="400"/>
+<img src="/post_asset/2020-03-31-MA3252_Linear_optimation_13.png" alt="2020-03-31-MA3252_Linear_optimation_13.png failed" width="400"/>
 
 ##### Duality in maximum flow problem
 

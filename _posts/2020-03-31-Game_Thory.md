@@ -54,7 +54,7 @@ $$
 $$
 
 
-####def Graph
+###### def Graph
 
 \\(G(R_i) \\) denote the graph of \\(R_i \\), defined by:
 

@@ -145,7 +145,7 @@ Note:
 
 #### Lost sale case (Shortage not allow) 短缺的需求不会在未来兑现
 
-<img src="post_asset/2020-03-30-Stochastic Operation Research note_1.png" alt="2020-03-30-Stochastic Operation Research note_1.png failed" width="400"/>
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_1.png" alt="2020-03-30-Stochastic Operation Research note_1.png failed" width="400"/>
 
 (图里的L为什么不是一样长的，但是我们这个课只讨论是constant的情况。)
 
@@ -230,7 +230,7 @@ $$
 
 简单的说就是，定期查看库存，得到 \\(I(t_i)\\) 然后补充 \\(S - I(t_i)\\) 的货到 \\(S\\).
 
-<img src="post_asset/2020-03-30-Stochastic Operation Research note_2.png" alt="2020-03-30-Stochastic Operation Research note_2.png failed" width="400"/>
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_2.png" alt="2020-03-30-Stochastic Operation Research note_2.png failed" width="400"/>
 
 
 
