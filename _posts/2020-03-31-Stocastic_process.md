@@ -157,7 +157,7 @@ $$
 \end{align*}
 $$
 
-<img src="post_asset/2020-03-31-Stocastic_process_1.png" alt="2020-03-31-Stocastic_process_1.png failed" width="200"/>
+<img src="/post_asset/2020-03-31-Stocastic_process_1.png" alt="2020-03-31-Stocastic_process_1.png failed" width="200"/>
 
 
 所以 \\( PP = P^2\\). 这样的话 \\( P^2_{i,j}\\) 就直接是走两步了。
@@ -211,6 +211,7 @@ $$
 \forall i,j \in \mathcal{S}, \tilde{p}_{i,j} = p_{i,j} 
 $$
 Or equivalently detailed balance equation.
+
 
 
 

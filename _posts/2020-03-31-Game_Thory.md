@@ -56,8 +56,6 @@ $$
 
 ###### def Graph
 
-test on 20:54
-
 \\(G(R_i) \\) denote the graph of \\(R_i \\), defined by:
 
 $$
@@ -71,7 +69,11 @@ So to find Nash equilibria
 
 __Measure 1 Direct guess__
 
-For any guess (\\(s_{1}^{\*}\\),\\(s_{1}^{\*}\\)) 
+For any guess (\\(s_{1}^{\*}\\),\\(s_{1}^{\*}\\))  \\(\in S_1 \times S_2\\), compute the \\(R_{1}^{}(s_2^\*)\\) and \\(R_{2}^{}(s_1^\*)\\). Then (\\(s_{1}^{\*}\\),\\(s_{1}^{\*}\\)) is a Nash equilibrium if \\( s_1^\* \in R_1(s_2^\*) \\\) and \\(s_2^\* \in R_2(s_1^\*) \\).
+
+__Measure 2 Intersection of the graph__
+
+\\( (s_1^\*, s_2^\*) \in G(R_1) \cap G(R_2)\\)
 
 
 1. 完全信息-静态博弈

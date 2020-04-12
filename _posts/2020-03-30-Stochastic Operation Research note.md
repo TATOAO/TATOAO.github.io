@@ -228,20 +228,56 @@ $$
 $$
 
 
-简单的说就是，定期查看库存，得到 \\(I(t_i)\\) 然后补充 \\(S - I(t_i)\\) 的货到 \\(S\\).
+简单的说就是，定期查看库存，得到 \\(I(t_i)\\) 然后补充 \\(S - I(t_i)\\) 的货到 \\(S\\). 所以这个model的optimal会比 (r，q) model 更差一些(成本更高)，因为这个model不光固定了，进货量，还固定了了Circle的时长。A more restricted model.
+
 
 <img src="/post_asset/2020-03-30-Stochastic Operation Research note_2.png" alt="2020-03-30-Stochastic Operation Research note_2.png failed" width="400"/>
 
 
+###### Inventory level in a cycle 库存量
+同样是approximate 不用太深究。(期初 + 期末) /2。乍看下面这个表达会让人一头雾水，这么会有 \\(\bar{D}_{L+R}\\) 这种重复时段的表达呢，其实还是有点微妙的，
 
 
+$$
+\begin{align*}
+	 &= {\frac{1}{2}} [(S - \bar{D}_{L+R}) + (S - \bar{D}_{L+R} + \bar{D}R)] \\
+	 &= (S - \bar{D}_{L+R} + {\frac{ \bar{D}R}{2}})
+\end{align*}
+$$
 
 
+<img src="/post_asset/Stochastic Operation Research had wrtiting note.jpeg" alt="Stochastic Operation Research had wrtiting note.jpeg failed" width="400"/>
+
+其实这个表达也是有点坑的，但老师的这个note本来就是简略版的，所以就原谅他吧(可能就是想说这个内容并不重要..)
+
+然后顺理成章的，我们有 setup cost + holding cost + expected shortage cost：(cost/year)
+
+$$
+\begin{align*}
+	TC(R,S) &= {\frac{K+J}{R}} + h[S - \bar{D}_{L+R} + {\frac{ \bar{D}R}{2}}]	+ {\frac{C_B}{R}} \int_{S}^{\infty} (x-S)f(x) dx \\
+\end{align*}
+$$
+
+先解S，然后conventionally 用EOQ 代q --> \\( {\frac{EOQ}{ \bar{D}}} \\) 代 \\(R_{}^{\*}\\) (周期长)。
+
+$$
+\begin{align*}
+	Pr(D_{L+R} > S^*) &= {\frac{Rh}{C_B}}   \\
+	R^* &= {\frac{EOQ}{ \bar{D}}} = \sqrt{\frac{2(K+J)}{h \bar{D}}} 
+\end{align*}
+$$
+
+##### Lost-sale case
+
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_4.png" alt="2020-03-30-Stochastic Operation Research note_4.png failed" width="400"/>
 
 
+对比 Back-logged case 的expected inventory level, 其实就是多加了一个\\( \int_{S}^{\infty} (x-S)f(x) dx\\). 
 
+所以同理咯，只是全部加一项。
 
-
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_5.png" alt="2020-03-30-Stochastic Operation Research note_5.png failed" width="400"/>
+  
 
 
 <script type="text/javascript" async
