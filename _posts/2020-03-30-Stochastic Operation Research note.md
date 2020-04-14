@@ -9,7 +9,7 @@
 	
 	2.2. [Probabilistic](#ch2.2 "")
 
-3. Stochastic Probabilistic
+3. Stochastic Programming
 
 Theory
 
@@ -17,7 +17,7 @@ Theory
 	
 2.2. [Probabilistic](#ch2.2 "")
 
-3. Stochastic Probabilistic
+3. Stochastic Programming
 
 
 ## <a name="ch2"></a> 2. Inventory Theory 库存管理
@@ -277,7 +277,199 @@ $$
 所以同理咯，只是全部加一项。
 
 <img src="/post_asset/2020-03-30-Stochastic Operation Research note_5.png" alt="2020-03-30-Stochastic Operation Research note_5.png failed" width="400"/>
-  
+
+
+# 第三部分 Stochastic Programming 
+
+## General model of two-stage stochastic program.
+
+The introduction example:
+
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_6.png" alt="2020-03-30-Stochastic Operation Research note_6.png failed" width="400"/>
+
+
+$$
+\begin{align*}
+	x_1 &= \text{wheat (acres of land)} \\
+	x_2 &= \text{corn (acres of land)} \\
+	x_3 &= \text{sugar beets (acres of land)} \\
+	& \\
+	w_1 &= \text{wheat sold (tons)}\\
+	w_2 &= \text{corn eat sold (tons)}\\
+	w_3 &= \text{sugar beets sold (favorable price) (tons)}\\
+	w_4 &= \text{sugar beets sold (lower price) (tons)}\\
+	& \\
+	y_1 &= \text{wheat purchased (tons)}\\
+	y_2 &= \text{corn purchased (tons)}\\
+	y_3 &= \text{sugar beets purchased (tons)}\\
+\end{align*}
+$$
+
+$$
+\begin{align*}
+	&\min & 150x_1 + 230x_2 + 260x_3  &\\
+	& \;  &+238y_1 + 210y^2 &\\
+	& \;  &-170w_1 - 150w_2 - 36w_3 - 10w_4 &\\
+	& & & \\
+	& s.t.&x_1 + x_2 + x_3 \le 500, &\text{ Total arcs} \\
+	& \;  &\fbox{2.5}x_1 + y_1 - w_1 \ge 200, & \text{ left of wheat minimum, link the yield as well} \\
+	& \;  &\fbox{3}x_2 + y_2 - w_2 \ge 240, & \text{ left of corn minimum, link the yield as well} \\
+	& \;  &w_3 + w_4 \le 20x_3 & \text{ sugar beets less or equal to grow}\\
+	& \;  &w_3 \le 6000, & \text{ good price no exeed quote} \\
+	& \;  & \text{ all variable} \ge 0 &
+\end{align*}
+$$
+
+现在问题是，画方块的参数，收成是不确定的，不能保证每亩地的长出的麦子/玉米和以前一样。
+
+所以，假设，有三种情况，低收成，中等收成，高收成，分别是1/3 的概率。
+
+那么我们的variables里的， \\(x_1, x_2, x_3\\) 不变，但是 \\(y, w\\) 变成：
+
+$$
+y_{11}\; y_{12} \;y_{13}\; \text{三种情况的麦子的买入量} \\
+w_{11}\; w_{12} \;w_{13}\; \text{三种情况的麦子的卖出量} \\
+...
+$$
+
+##### First stage variable: like the arcs.
+就像开头的example里的，种多少地，\\(x_{1}, x_2, x_3\\) 这个是不随收成高低而变化的决策，(种什么是一开始就要确定的)
+##### Second stage variable: The realization of same random vector  
+像\\(y_{11}, y_{12}, y_{13} \\) 这种是我们收割完粮食，可以在后面决定的决策。 After full information is received <u> on the realization of some random vector</u> \\(\xi\\)  , the second-stage or corrective actions \\(y\in \mathbb{R}^{n2}\\) are taken.
+
+## General form
+$$
+\begin{align*}
+	&\min c^Tx + \mathbb{E}_\xi Q(x,\xi) \\
+	&s.t. Ax = b, x\ge 0. \\
+\end{align*}
+$$
+
+$$
+\begin{align*}
+	Q(x,\xi) &= \min \{\mathbf{q}^Ty| Wy = \mathbf{h}-\mathbf{T}x,y\ge 0 \} \\
+\end{align*}
+$$
+
+所以这里 \\(\boldsymbol{\xi}\\) 由三个部分组成 \\( \boldsymbol{q}, \mathbf{h}, \mathbf{T}\\) 是三个random variables可能的，分别对应 c / b / A 三种可能的stochastic的形式。这里的 \\(y_{}^{}\\) 也是free variable，相等于是后发行动的选择(买卖多少小麦)。
+
+
+<u>Notation</u>: <br>
+a indicator function of a set \\( C \subseteq \mathbb{R}^{n}\\)
+$$
+\begin{align*}
+\delta_C(x) &= 
+	\begin{cases} 
+	      0 &  \text{ if } x \in C \\
+	      + \infty & \text{otherwise} 
+	\end{cases} \\
+\end{align*}
+$$
+
+$$
+\begin{align*}
+	K_1 &= \{ x| Ax = b, x \le 0 \}  \\
+	K_2(\xi) &= \{ x| \exists y\le 0 \; s.t. Wy = h - Tx \}  \\
+\end{align*}
+$$
+
+Then now, we can define cost function:
+$$
+\displaystyle
+\min_{x\in \mathbb{R}^{n_1}} c^Tx + \mathbb{E}_{\xi} Q(x,\xi) + \delta_{K_1}(x)
+$$ 就是，如果这个 \\(x_{}^{}\\) 不在feasible region的话，optimal是正无穷(infeasible) 
+
+$$
+\begin{align*}
+	z(x,\xi) &= c^Tx + Q(x,\xi) + \delta_{K_1}(x) \\
+	         &= c^Tx +  \min \{\mathbf{q}^Ty| Wy = \mathbf{h}-\mathbf{T}x,y\ge 0 \} + \delta_{K_1}(x) \\
+	& \\
+	K_2(\xi) &= \{ x| \exists y \le 0 \; s.t. Wy = h - Tx \} \\
+\end{align*}
+$$
+
+K2 同样也可以理解为某种scenario \\(\xi\\) 里的 feasible region。
+
+所以：
+
+$$
+\begin{align*}
+z(x,\xi) &= 
+	\begin{cases} 
+	      + \infty &  \text{ if } x \notin K_1 \cap K_2(\xi) \\
+	      - \infty &  \text{ if Q is unbounded below}  
+	\end{cases} \\
+\end{align*}
+$$
+
+所以最后，two-stage stochastic program can be written as
+
+$$
+	\displaystyle \min_{x\in \mathbb{R}^{n_1}} \mathbb{E}_{\xi} z(x,\xi) 
+$$
+
+
+#### The expected Value of Perfect information
+Note assumption: 
+
+1. There is at least one \\(\xi\\) that give finite optimal.
+2. \\( \bar{x}(\xi)\\) denotes some optimal solution. with optimal objective value is \\(z(\bar{x}(\xi), \xi)\\).
+
+#### "wait and see" (WS) & "here and now" (RP)
+
+WS: 能遇见未来的情况
+RP：更真实的情况
+
+Expected value of perfect information.
+$$
+\begin{align*}
+	 EV PI &= RP - WS\\
+	 WS &= -\$115,426 ( as {\frac{z_1 + z_2 + z_3}{3}}) \\
+	 RP &= -\$108,390  \text{ 如果不能遇见收成}\\
+	 EV PI &= $7,016\\
+\end{align*}
+$$
+
+#### Value of the stochastic solution (VSS) (Expected value problem)
+
+$$
+\begin{align*}
+	&EV &= &\min_{x} z(x, \bar{\xi})  \\
+	&\bar{x}( \bar{\xi}) &= &\text{the optimal solution of EV} \\
+	&EEV &= &\mathbb{E}(z(x, \bar{\xi}))  \\
+	&VSS &= &EEV - RP. \text{Value of Stochastic Solution}\\
+	&WS &\le &RP \le EEV. \\
+\end{align*}
+$$
+
+先用 \\(\bar{\xi}\\) 确定 \\( \bar{x}\\)，让后带入 \\(z( \bar{x}( \bar{\xi}), \xi)\\), 然后再求 \\(z_{}^{}\\) 的Expectation 这就是为什么有 两个 E.
+
+
+#### Example 9.1
+
+
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_8.png" alt="2020-03-30-Stochastic Operation Research note_8.png failed" width="600"/>
+
+##### WS
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_9.png" alt="2020-03-30-Stochastic Operation Research note_9.png failed" width="600"/>
+
+##### EEV
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_10.png" alt="2020-03-30-Stochastic Operation Research note_10.png failed" width="500"/>
+
+书上其实写的挺清楚的了。直接摘抄了.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script type="text/javascript" async

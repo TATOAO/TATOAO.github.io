@@ -133,16 +133,6 @@ Every state is of period 1 is Aperiodic.
 
 
 
-#### Detailed Balance Condition ####
-
-$$
-\pi_{i} P_{ij} = \pi_{j} P_{ji}
-$$
-
-Balance Condition 其实就很好理解，它的任意两个状态，1 -> 2, 2->1 的概率是一样的，所以它一定满足stationary distribution的条件。 <br>但显然的，stationary distribution 不一定满足 Detailed Balance Condition。 
-
-
-
 ---
 ## N-th step transition
 
@@ -203,15 +193,53 @@ $$
 
 
 ## Reducible
-## Time Reversible
+# Time Reversible
+
 
 Time reversible, stationary Markov chain:
 
 $$
 \forall i,j \in \mathcal{S}, \tilde{p}_{i,j} = p_{i,j} 
 $$
+
+
+
+$$
+\begin{align*}
+	P(X_m = j| X_{m+1} = i) &= {\frac{P(X_M=j,X_{m+1} = i)}{P(X_{m+1} = i)}} &= {\frac{ \pi_j p_{j,i}}{\pi_i}}   \\
+\end{align*}
+$$
+
 Or equivalently detailed balance equation.
 
+<img src="/post_asset/2020-03-31-Stocastic_process_2.png" alt="2020-03-31-Stocastic_process_2.png failed" width="600"/>
+
+
+\\(\tilde{p}_{i,j}\\) is also called <u>dual</u> transition probability. 
+#### Detailed Balance Condition ####
+
+$$
+\pi_{i} P_{ij} = \pi_{j} P_{ji}
+$$
+
+Balance Condition 其实就很好理解，它的任意两个状态，1 -> 2, 2->1 的概率是一样的，所以它一定满足stationary distribution的条件。 <br>但显然的，stationary distribution 不一定满足 Detailed Balance Condition。 
+
+
+
+
+
+##### Theorem - Kolmogorov's criterion for time reversibility
+
+Reversible \\( \leftrightarrow \; p_{i,i_1}p_{i_1,i_2} \cdots p_{i_k,i} = p_{i,i_k}p_{i_k,i_{k-1}} \cdots p_{i_1,i}\\) 
+
+就是说 any path from i to i, the reverse path and the original path probability is equal. 
+
+\\(\rightarrow\\) 
+
+<img src="/post_asset/2020-03-31-Stocastic_process_3.png" alt="2020-03-31-Stocastic_process_3.png failed" width="600"/>
+
+
+\\(\leftarrow\\) 
 
 
 
