@@ -2,9 +2,11 @@
 一共有三章:
 
 
-## 第一部分 Linear Problem 问题
-### Simplex 算法
-### Duality 对偶性
+# 第一部分 Linear Problem 问题
+## Simplex 算法
+
+
+## Duality 对偶性
 
 __Primal__
 
@@ -12,11 +14,25 @@ __Primal__
 
 __Upper bound__ is easy to find (any feasible \\(x'\\) corresponding \\(c^T x\\))
 
-Define: \\( \displaystyle g(p):= \min_{x\in \mathbb{R}^{n}} c^T x + p^T (b-Ax) \\)
+##### Lower bound
+Define: 
 
-__Lower bound__ can be construct in this form: \\( \displaystyle g(p) \le c^T x^* + p^T (b-Ax^*) \\). where \\((b-Ax^*) \\) should be \\(0\\) and \\(x^*\\) is an optimal solution. <br>等下，如果我们都找到optimal了还要lower bound 做甚？ 
+\\( \displaystyle g(p):= \min_{x\in \mathbb{R}^{n}} c^T x + p^T (b-Ax) \\)
 
-所以 
+Lower bound can be construct in this form: \\( \displaystyle g(p) \le c^T x^\* + p^T (b-Ax^\* ) \\) where \\((b-Ax^\* )\\) should be \\(0\\) and \\(x^*\\) is an optimal solution. 
+
+所以,
+
+$$
+\begin{align*}
+g( \boldsymbol{p}) = \boldsymbol{p}^T \boldsymbol{b} + \min_{x\ge 0} (\boldsymbol{c}^T - \boldsymbol{p}^T \boldsymbol{A}) \boldsymbol{x} = \boldsymbol{p}^T \boldsymbol{b} &+ 
+	\begin{cases} 
+	      0 &  \text{ if } \boldsymbol{c}^T - \boldsymbol{p}^T \boldsymbol{A} \ge 0 \\
+	      - \infty & \text{otherwise} 
+	\end{cases} \\
+\end{align*}
+$$
+ 
 
 
 

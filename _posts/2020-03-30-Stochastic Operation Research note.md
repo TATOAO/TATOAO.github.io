@@ -20,13 +20,18 @@ Theory
 3. Stochastic Programming
 
 
-## <a name="ch2"></a> 2. Inventory Theory 库存管理
+# <a name="ch2"></a> 2. Inventory Theory 库存管理
 其实这也是非常intuitive的一章。
 
 Notation:
 $$
 \begin{aligned}
 q &= \text{number of units ordered (decision variable).}\\
+K &=  \text{set up cost per ordre} \\
+C &= \text{Purchase cost per item}\\
+h &= \text{holding cost per item per unit time}\\
+p &= \text{shortage penalty cost per item per unit time}\\
+a &= \text{demand rate}\\
 D &= \text{random variable (demand)}\\
 Pr(D = d) &= p(d) \text{ probability realisation} \\
 c(d,q) &= \text{cost function}\\
@@ -34,6 +39,55 @@ c(d,q) &= \text{cost function}\\
 $$
 
 ### 2.1. Deterministic Inventory Model <a name="ch2.1"></a>
+
+最简单的情况：
+
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_11.png" alt="2020-03-30-Stochastic Operation Research note_11.png failed" width="400"/>
+
+$$
+\begin{align*}
+	{\frac{q}{a}} 		&= \text{Time length of one cycle.} \\
+	{\frac{q}{2}} 	&= \text{average inventory level}\\
+	h({\frac{q}{2}})&= \text{holding cost}\\
+	aC		&= \text{purchase cost per unit time.}\\
+	K \div {\frac{q}{a}}	&= \text{set up cost per unit time.}\\
+	TC(q)		&= {\frac{aK}{q}}  + aC + {\frac{hq}{2}} \\
+	q^*		&= \sqrt{ {\frac{2aK}{h}} } \\
+	{\frac{q^*}{a}} &= \sqrt{ {\frac{2K}{ah}} } \text{  optimal cycle length}\\
+\end{align*}
+$$
+
+#### 允许Shortage：
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_13.png" alt="2020-03-30-Stochastic Operation Research note_13.png failed" width="400"/>
+
+相当于多了一个option，允许shortage了，所以我们需要一个新的变量决定shortage 多久， \\(S_{}^{}\\) 
+
+$$
+\begin{align*}
+	S 		&= \text{ the stock at the beginning of a cycle} \\
+	q 		&\ge S \\
+	{\frac{S}{a}} 	&= \text{ time length of without shortage}\\
+	{\frac{q}{a}}   &= \text{ time length of a cycle} \\
+	{\frac{hS}{2}} {\frac{S}{a}}  	&= \text{ holding cost per cycle}\\ 
+	{\frac{hS}{2}} {\frac{S}{a}} \div {\frac{q}{a}} 	&= \text{ holding cost per unit time}\\ 
+	p 		&= \text{ shortage cost per item per unit time} \\
+	p( {\frac{q-S}{2}}) ( {\frac{q-S}{a}} ) &= \text{ shortage cost per cycle} \\
+	aC		&= \text{ purchasing cost per unit time} \\
+	TC(q,S)		&= {\frac{aK}{q}} + aC + {\frac{hS^2}{2q}} + {\frac{p(q-S)^2}{2q}} \\
+\end{align*}
+$$
+
+Then we can solve:
+$$
+\begin{align*}
+	q^* &= \sqrt{ {\frac{2aK}{h}} } \sqrt{ {\frac{p+h}{p}} } \\
+	S^* &= \sqrt{ {\frac{2aK}{h}} } \sqrt{ {\frac{p}{p+h}} } \\
+	t^* &= {\frac{q^*}{a}} = \sqrt{ {\frac{2K}{ah}}} \sqrt{ {\frac{p+h}{p}} }\\
+	\lim_{p \to \infty} q^* &= \text{ in the previous casa, with shortage cost is infinity}\\
+\end{align*}
+$$
+
+
 
 
 ### 2.2. Probabilistic Inventory Model <a name="ch2.2"></a>
@@ -135,13 +189,34 @@ $$
 可以解出答案：
 $$
 \begin{align*}
-	Pr(X \ge r^*) &= {\frac{hq^*}{C_B \bar{D}}} 
+	Pr(X \ge r^*) &= {\frac{hq^*}{C_B \bar{D}}} \\
+	Pr(X \ge r^*) &= Pr(Z \ge {\frac{r^* - \bar{X}}{\sigma}} )
 \end{align*}
 $$
 
 Note:
-1. <u>safety stock</u> - r - 
-2. Expected annual holding cost
+1. <u>safety stock</u> \\( r^\* - \bar{X}\\)
+2. If \\( {\frac{h q^*}{C_B \bar{D}}} > 1\\), then we cannot use the above formula to determine \\( r^*\\). In this case we simply set r* to a small value. (like epsilon? or negative value?)
+
+
+
+##### N?
+For example:
+
+$$
+\text{ Every year}\\
+D \thicksim N(1000, 40.8^2) \\
+\text{X is every week, 1/26 year} \\
+X \thicksim N( {\frac{1000}{26}} , {\frac{40.8^2}{26}}) \\
+$$
+
+$$
+\begin{align*}
+	Pr(X\ge r^*) &= Pr(Z\ge {\frac{r^* - {\frac{1000}{26}} }{ {\frac{40.8}{\sqrt{26}}} }})   \\
+\end{align*}
+$$
+
+
 
 #### Lost sale case (Shortage not allow) 短缺的需求不会在未来兑现
 
@@ -172,13 +247,13 @@ shortage cost 也是简单的把 \\(C_B\\) 变成 \\( C_{LS}\\)
 
 $$
 \begin{align*}
-	 q^* &= \sqrt{ {\frac{wK \bar{D}}{h}}}  \\
-	 {\frac{\partial TC(q,r)}{\partial r}} &= h + (h + {\frac{C_{LS}\bar{D}}{{q}}) \bar{B_r}^{ \prime}} \\
+	 q^* &= \sqrt{ {\frac{2K \bar{D}}{h}}}  \\
+	 {\frac{\partial TC(q,r)}{\partial r}} &= h + {\frac{d \bar{Br}}{dr}} (h + \frac{C_{LS}\bar{D}}{q}) \\
 	 Pr(X \ge r^*) &= {\frac{hq^*}{hq^*+C_{LS} \bar{D}}}
 \end{align*}
 $$
 
-相比之前的 \\(r^*\\) 就是分母多了个 \\(h q^*\\) 项。
+相比之前的 \\(r^\*\\) 就是分母多了个 \\(h q^\*\\) 项。
 
 
 ##### (s,S) policies: 补到 S 这么多
@@ -211,6 +286,22 @@ $$
 	SML_2 &=  Pr(X > r) {\frac{ \bar{D}}{q}} \\
 \end{align*}
 $$
+
+###### To calculate B_r Normal Loss function 
+
+$$
+\begin{align*}
+	f(x) &= {\frac{1}{\sigma_x \sqrt{2\pi} }} e^{ - {\frac{(x - \bar{X})^2}{2 \sigma_x^2}} } \\
+	\bar{B_r} &= \int^{\infty}_{r}(x-r)f(x) dx \\
+	\bar{B_r} &= {\frac{1}{\sigma_x \sqrt{2\pi} }} \int_{r}^{\infty} (x-r)   e^{ - {\frac{(x - \bar{X})^2}{2 \sigma_x^2}} } dx  \\
+		  &= {\frac{\sigma_x}{\sqrt{2\pi}}} \int_{ {\frac{r - \bar{X}}{\sigma_x}} }^{\infty} (z - {\frac{r - \bar{X}}{\sigma_x}}) e^{ -{\frac{z^2}{2}} } dz \\
+
+	NL( \alpha) &= {\frac{1}{\sqrt{2\pi}}} \int_{ \alpha}^{\infty} (z - \alpha) e^{- {\frac{z^2}{2}} } dz \\
+	\bar{B_r} &= \sigma_x NL( {\frac{r - \bar{X}}{\sigma_x}} )
+\end{align*}
+$$
+
+Then we can check the table of \\(NL_{}^{}\\) .
 
 
 #### Periodic Review Models: (R,S) Policies 定期检查策略
