@@ -257,7 +257,221 @@ $$
 
 
 
-### Chapter 3 不完全信息 静态博弈
+# Chapter 3 不完全信息 静态博弈
+
+自己有别人不知道的信息： 自己的 type
+
+不是动态的, 所以是 Action Space 不是, Strategy Space
+
+### Notation
+
+$$
+\begin{align*}
+	n &= \text{ n players }\\
+	A_1, ..., A_n &= \text{ action spaces} \\
+	T_1, ..., T_n &= \text{ type spaces} \\
+	P_1, ..., P_n &= \text{ their beliefs} \\
+	u_1, ..., u_n &= \text{ their payoff functions}\\
+	& \\
+	G &= \{ A_1, ..., A_n ; T_1, ..., T_n; P_1, ..., P_n; u_1, ..., u_n \}\\
+\end{align*}
+$$
+
+###### Type, for player $$ i, \,\, t_i \in T_i $$
+只有player \\(i_{}^{}\\)  才知道自己是什么type.
+
+$$
+u_i (a_1,..., a_n ; t_i)  \text{ 不同的type 会有不同的 payoff function}
+$$
+
+但别人知道你的payoff function, 只是不知道你是什么type。
+
+
+###### Belief
+对别人的猜测 (公共的信息,) 别人也知道你是怎么猜的
+
+$$
+\text{ For player } i \\
+P_i (t_{-i} | t_i)  \text{ 当自己是type ti 的时候, 对别人所有的 type 的分布概率的预计}
+$$
+
+
+##### Stategy
+
+就是每一个 type, 应该对应一个action, 就像Cournot 一样, $$ c_H , c_L $$ 有两个action。
+
+
+## Bayesian Nash equilibrium
+
+for strategies $$ s^* = (s^*_1, ..., s^*_n) $$ are a pure-strategy __Bayesian Nash equilibrium__ if:
+
+For each player \\(i_{}^{}\\) , for each type \\(t_{i}^{} in T_i\\) 
+$$
+\begin{align*}
+	&  \\
+	\max_{ a_i \in A_i} &= \mathbb{E}_{t_{-i}} u_i(a_i, s^*_{-i} (t_{-i}); t_i) \\
+	& \text{ 每一个人的 每一个 type 的action 都让它这个 type 的payoff 最大化}\\
+\end{align*}
+$$
+
+
+## Cournot Competition under asymmetric information 
+
+现在 Cournot model, 但是有一点小改变。
+
+$$
+\begin{align*}
+	c_1 (q_1) &= cq_1 \\
+	c_2(q_2) &= 
+		\begin{cases} 
+		      c_H q_2 &  \text{ with probability } \theta \\
+		      c_L q_2 &  \text{ with probability } 1- \theta \\
+		\end{cases} \\
+\end{align*}
+$$
+
+Firm 1 的成本是大家都知道的, 但是 Firm 2 的成本只有它自己知道。Firm 1 的视角里, Firm 2 的成本就是 那个概率。
+
+然后两个firm 同时choose $$ ( q_1^*, q_2^* (c_H), q_2^*(c_L)) $$
+
+$$
+\begin{align*}
+	q_2^*(c_H) &=  \max_{q_2} [a - q_1^* - q_2 - c_H] q_2   \\
+	& \text{ 当firm 2 是 High cost 的时候, 选择} q_2^* \text{ 当最佳的生产数量} \\	
+	q_2^*(c_L) &=  \max_{q_2} [a - q_1^* - q_2 - c_L] q_2   \\
+	& \text{ 当firm 2 是 Low cost 的时候, 选择} q_2^* \text{ 当最佳的生产数量} \\
+\end{align*}
+$$
+
+_容易得, 这是个二次函数, 所以还是根据以前的结论, 最高值在：_
+
+$$
+q_2^* (c_H) = {\frac{ a - q_1^* - c_H}{2}} \\
+q_2^* (c_L) = {\frac{ a - q_1^* - c_L}{2}} \\
+$$
+
+从 Firm 1 的视角, 它的 payoff function 是这样的：
+
+$$
+\begin{align*}
+	\pi_1( q_1) &= \theta \boxed{[a - q_1 - q_2^*(c_H) - c]q_1} + (1- \theta) \boxed{[ a - q_q - q_2^* (c_L) - c] q_1}    \\
+	 &= [(a - \theta q_2^* (c_H) - (1 - \theta) q_2^* (c_L) - c) - q_1]q_1\\
+\end{align*}
+$$
+
+这也是一个二次函数:
+
+$$
+\begin{align*}
+	q_1^* &= {\frac{[a- \theta q_2^* (c_H) - (1 - \theta) q_2^* (c_L) - c]}{2}} \\
+	 &= {\frac{[a - \theta {\frac{ a - q_1^* - c_H}{2}} - (1 - \theta) {\frac{ a - q_1^* - c_L}{2}} - c]}{2}} \\
+	 &= {\frac{[ {\frac{a}{2}}  + {\frac{q_1^*}{2}} - \theta {\frac{- c_H}{2}} - (1 - \theta) {\frac{ - c_L}{2}} - c]}{2}} \\
+	 &= {\frac{[ {\frac{a}{2}}  + {\frac{q_1^*}{2}} + \theta {\frac{c_H}{2}} + (1 - \theta) {\frac{ c_L}{2}} - c]}{2}} \\
+	& \Updownarrow  \\
+	4q_1^*  &= a + q_1^* + [ \theta c_H + (1 - \theta) c_L] - 2c  \\
+	3q_1^*  &= a + [ \theta c_H + (1 - \theta) c_L] - 2c  \\
+\end{align*}
+$$
+
+Then it solve:
+
+$$
+\begin{align*}
+	q_2^* (c_H) &= {\frac{ a - q_1^* - c_H}{2}} \\
+		    &= {\frac{1}{6}}( a - 2c + [ \theta c_H + (1 - \theta) c_L]) + {\frac{a - c_H}{2}} \\
+			& \\
+	q_2^* (c_L) &= {\frac{ a - q_1^* - c_L}{2}} \\
+		    &= {\frac{1}{6}}( a - 2c + [ \theta c_H + (1 - \theta) c_L]) + {\frac{a - c_L}{2}} \\
+\end{align*}
+$$
+
+## Public Good example 公共资源
+
+现在有两个 player i = 1,2, 它们只能选 贡献 或 不贡献。两个人只要有一个人贡献, 就有 1 的回报, 但是如果贡献, 得损失 一定的利益。 如果两个人都不贡献, 那两个人的回报都是 0.
+
+player i 的 type 是 \\(c_i\\), 这个type 的贡献的利益就是 \\( c_1\\)
+
+<img src="/post_asset/2020-03-31-Game_Thory_8.png" alt="2020-03-31-Game_Thory_8.png failed" width="500"/>
+
+
+现在 假定 player 1 有两个type , $$ c_1 = 0.5 $$ or $$ c_1 = 1.2$$. 外界(正确的)认为它的两个type的概率各是 0.5。
+
+Player 2 只有一个 type , c_2 = 0.8.
+
+所以 我们可以先把两个 payoff table 画出来
+
+<img src="/post_asset/2020-03-31-Game_Thory_9.png" alt="2020-03-31-Game_Thory_9.png failed" width="550"/>
+
+C: Contribute D: 不贡献
+
+所以, 对player 1 来说
+
+<img src="/post_asset/2020-03-31-Game_Thory_10.png" alt="2020-03-31-Game_Thory_10.png failed" width="550"/>
+
+对 player 2 来说, 它只有一种 payoff table：
+
+Player 2 的 $$ c_2$$ 是0.8, 所以 如果如果它 贡献的话 收益说 0.2, 不贡献的话, 可能是0 也可能是1 
+
+比如, Player 1 出 C, 如果 player 1 出 CC, 那就是说, $$ u_2(CC,C) = P(c1 = 0.5) \times 0.2 + P(c_1 = 1.2) \times 0.2 = 0.2 $$
+
+同理我们可以得到这个表：
+
+<img src="/post_asset/2020-03-31-Game_Thory_11.png" alt="2020-03-31-Game_Thory_11.png failed" width="400"/>
+
+然后我们得结合这两个表, 去找到它们相交的地方。 所以 (DD, C) (CD, D) 是两个 纳什均衡。 
+
+
+### 如果 player 2 也有两个 type
+
+<img src="/post_asset/2020-03-31-Game_Thory_12.png" alt="2020-03-31-Game_Thory_12.png failed" width="400"/>
+
+这样的话, 我们还是先考虑 player 1. 它的 expected payoff (根据 player 2) 是
+
+这个例子特殊, 当自己是 $$ c_1 = 0.5 $$ 的时候, player 2 不管是哪个, player 1 的payoff 都是一样的。 
+
+<img src="/post_asset/2020-03-31-Game_Thory_13.png" alt="2020-03-31-Game_Thory_13.png failed" width="400"/>
+
+但是注意, 现在player 2 有两个情况, 所以它可以选两次。
+
+
+比如说 $$ u_1 (C, CD ;c_1 = 0.5) =  {\frac{1}{4}} \times 0.5 + {\frac{3}{4}} \times 0.5 = 0.5 $$
+
+$$ u_1 (D, CD; c_1 = 0.5) = {\frac{1}{4}} \times  1 + {\frac{3}{4}} \times 0 = 0.25 $$
+
+所以我们得先得到这个表：
+
+<img src="/post_asset/2020-03-31-Game_Thory_14.png" alt="2020-03-31-Game_Thory_14.png failed" width="550"/>
+
+然后 如果 player 1 的 type 是 $$ c_1 = 1.2 $$ : 同理也要的这个表
+
+<img src="/post_asset/2020-03-31-Game_Thory_15.png" alt="2020-03-31-Game_Thory_15.png failed" width="550"/>
+
+至此, 我们能得到 Best responses
+
+<img src="/post_asset/2020-03-31-Game_Thory_16.png" alt="2020-03-31-Game_Thory_16.png failed" width="400"/>
+
+同理, 我们再把 Player 2 的情况弄清楚：
+
+<img src="/post_asset/2020-03-31-Game_Thory_17.png" alt="2020-03-31-Game_Thory_17.png failed" width="400"/>
+
+<img src="/post_asset/2020-03-31-Game_Thory_18.png" alt="2020-03-31-Game_Thory_18.png failed" width="400"/> <img src="/post_asset/2020-03-31-Game_Thory_19.png" alt="2020-03-31-Game_Thory_19.png failed" width="400"/>
+
+
+最后我们得到, 
+
+<img src="/post_asset/2020-03-31-Game_Thory_20.png" alt="2020-03-31-Game_Thory_20.png failed" width="400"/>
+
+
+
+
+
+
+
+
+
+
+
+
 ### Chapter 4 不完全信息 动态博弈
 ### Chapter 5 合作博弈
 

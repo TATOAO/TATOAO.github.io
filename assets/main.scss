@@ -54,6 +54,28 @@ padding-left: 1%;
 .post-content h6 { font-size: 14px; font-weight: bold; text-decoration: underline;}
 @media screen and (max-width: 800px) { .post-content h6 {font-weight: bold; font-size: 12px; text-decoration: underline;} }
 
+h3:before {
+	content: '\205C   ';
+}
+
+h4:before {
+	content: '\00A7    ';
+}
+
+h4:after {
+	content: '   \00A7';
+}
+
+
+h5:before {
+	content: '\2605    ';
+}
+
+
+h6:before {
+	content: '\2588    ';
+}
+
 
 #map {
     position: fixed;

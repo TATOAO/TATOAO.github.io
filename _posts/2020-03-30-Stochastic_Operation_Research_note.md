@@ -506,9 +506,10 @@ Note assumption:
 1. There is at least one \\(\xi\\) that give finite optimal.
 2. \\( \bar{x}(\xi)\\) denotes some optimal solution. with optimal objective value is \\(z(\bar{x}(\xi), \xi)\\).
 
-#### "wait and see" (WS) & "here and now" (RP)
+#### "wait and see" (WS) & "here and now" (Recourse Problem RP)
 
 WS: 能遇见未来的情况
+
 RP：更真实的情况
 
 Expected value of perfect information.
@@ -539,27 +540,177 @@ $$
 #### Example 9.1
 
 
-<img src="/post_asset/2020-03-30-Stochastic Operation Research note_8.png" alt="2020-03-30-Stochastic Operation Research note_8.png failed" width="600"/>
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_8.png" alt="2020-03-30-Stochastic Operation Research note_8.png failed" width="800"/>
 
 ##### WS
-<img src="/post_asset/2020-03-30-Stochastic Operation Research note_9.png" alt="2020-03-30-Stochastic Operation Research note_9.png failed" width="600"/>
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_9.png" alt="2020-03-30-Stochastic Operation Research note_9.png failed" width="800"/>
 
 ##### EEV
 <img src="/post_asset/2020-03-30-Stochastic Operation Research note_10.png" alt="2020-03-30-Stochastic Operation Research note_10.png failed" width="500"/>
 
 书上其实写的挺清楚的了。直接摘抄了.
 
+#### \\( WS \ge RP \ge EEV\\)
+
+proof omit
+
+
+## Benders decomposition
+
+Notation:
+
+$$
+\begin{align*}
+	&\min_{x, y} &f(x) + h^T y &\\
+	 &s.t.  &F(x) + My &\ge b \\
+	& &x \in \chi,   y&\ge 0 \\
+	& &  &  \\
+	& &  f, F  & \text{ 可能是  non-linear function}\\
+	& &  h^Ty, My     & \text{ conventionally 是一个 simple 的linear 问题}
+\end{align*}
+$$
+
+然后我们把这个问题拆成两半：
+	
+$$
+\begin{align*}
+&	&\min_{x} & &f(x) + &g(x)   \\
+&	&s.t.     & &x \in \chi & \\
+& & & & & \\
+	g(x) &= & \min_{y} & &h^Ty &  \\
+	     &  & s.t.     & &My   &\ge b-F(x)\\
+	     &  &          & &y    &\ge 0\\
+\end{align*}
+$$
+
+然后我们取 第二个 Linear 问题的 Dual：
+	
+$$
+\begin{align*}
+	g(x) &= & \max_{u} & &(b-F(x))^Tu &  \\
+	     &  & s.t.     & &M^Tu   &\le h\\
+	     &  &          & &u    &\ge 0\\
+\end{align*}
+$$
+
+然后就是非常技术性的一些数学分解, 其实也不难的, 就是需要一点点的耐心～ (简单是不可能简单的, 但是也别怕！)
+
+首先, 一个Linear Problem 的 Feasible Region \\(P\\)  可以写成这种General 的形式：
+
+$$
+P = \text{ Feasible Region}\\
+p = \text{ 假设有 p 个 extreme points 极值点, 对应} \mu^1, \cdots, \mu^p \\
+q = \text{ 假设有 q 个 extreme rays, 对应} d^1, \cdots, d^q \\
+\forall u \in P, \; \; u = \sum_{i = 1}^{p} \lambda_i u^i + \sum_{j = 1}^{q} \mu_j d^j \\
+\sum_{i = 1}^{p} \lambda_i = 1  \text{ convex hell} \\
+$$
+
+<img src="/post_asset/2020-03-30-Stochastic Operation Research note_14.png" alt="2020-03-30-Stochastic Operation Research note_14.png failed" width="300"/>
+
+
+比如这个图, 有 两个 extreme rays, 两个 extreme points : A, B. 
+
+所以 把u带入dual LP：
+
+$$
+\begin{align*}
+	&	&\max_{ u \in P} c^T u \\ 
+	&= 	& \max_{1 \le i \le p,  1 \le j \le q} \{ \sum_{i = 1}^{p} \lambda_i c^T u^i + \sum_{j = 1}^{q} \mu_j c^T d^j \} \\
+	&       & \text{ with the convex hall and extreme rays}\\
+	&=	& 
+		\begin{cases} 
+		      + \infty & \text{ if } \exists d^j s.t. c^Td^j > 0 \\
+		\text{ 如果是 unbounded, (不会是feasible, 前面已经假设了)} \\
+		      \max \{ c^T u^i : i = 1, \cdots, p \}   &  \text{ if } c^Td^j \le 0, \forall j = 1, \cdots, q. \\
+		\text{ 至少在 c 的方向是 bounded 的 情况}
+		\end{cases} \\
+\end{align*}
+$$
+
+然后我们再把 \\( g(x) \\) 代入总的 , (我们又假设了 总的 problem 是 feasible的,) (所以 \\( (b - F(x))^T d^j \le 0 , \forall j = 1, \cdots, q\\) 算入一个条件里。
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_1.png" alt="2020-03-30-Stochastic_Operation_Research_note_1.png failed" width="500"/>
+
+所以现在的问题变成了： Restrict Master Problem
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_2.png" alt="2020-03-30-Stochastic_Operation_Research_note_2.png failed" width="500"/>
+
+到目前为止其实完全只是 notation 的rewrite ,还没有动用任何高级的知识, 只是相等于把 Linear 的部分简化了。x 的部分还没动。
+
+现在 终于登场了： 
+
+## The Benders Algorithm
+
+Notation:
+
+$$
+\begin{align*}
+	L_1 &\subset \{ u^1, \cdots, u^p \} & \text{ Extreme points full sets}  \\
+	L_2 &\subset \{ d^1, \cdots, d^q \} & \text{ Extreme rays full sets} \\
+	 & RMP = & \text{Restricted Master Problem}
+\end{align*}
+$$
+
+<b> Extreme Ray Example </b> <br>
+比如说：
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_3.png" alt="2020-03-30-Stochastic_Operation_Research_note_3.png failed" width="300"/>
+
+它的图像是这样的： 
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_5.png" alt="2020-03-30-Stochastic_Operation_Research_note_5.png failed" width="300"/>
+所以 它的 Extreme ray 有两条:
+$$
+ \begin{align*} 
+	\left(\begin{array}{ccc}
+		1 \\ 
+		1 \\ 
+	\end{array}
+	\right)
+\end{align*}
+$$
+, 
+$$
+\begin{align*} 
+	\left(\begin{array}{ccc}
+		1 \\ 
+		0 \\ 
+	\end{array}
+	\right)
+\end{align*}
+$$
+
+它的length 不重要。
 
 
 
+###### Benders' Master Problem (RMS)
+就是那个 z 的 总问题。
 
 
+###### Benders' Subproblem: (is the dual problem of min g(x))
+
+所以很自然的, Primal 是 min , dual 的任一个solution 都是Primal
+的Lower bound。 Primal 的任一个 solution都是 Primal 的Upper bound(但这不是重点)
 
 
+###### Algorithm:
+
+Initial step: set Lower bound and Upper bound : \\( l_b = - \infty, \; u_b = + \infty \\) set k:= 0.
+
+Iterative Step:  if \\( u_b - l_b \ge \epsilon \\) , set k = k + 1
+
+1. Solve RMP to obtain \\( (x^k, z^k)\\), Update \\(l_b = z^k \\).
+2. Solve the dual of the Benders' 然后有两个情况
+	-  <b> Case (i) </b> dual is unbounded (无穷大). Primal is infeasible : add a feasibility cut:
+		就是 肯定存在一个 extreme ray \\(d_{}^{j_k}\\) such that \\((b - F(x^k))^T d^{j_k} \le 0\\)  ( >0 只要大于0, extreme ray的特点就是可以任意取到无穷)  对应的 我们要它cut 掉, 所以自然的就是让它
+	-  \\( (b - F(x))^T d^{j_k} \le 0\\) 同时 (enlarge L2)
+	-  <b> Case (ii) </b>dual is bounded. 所以 那个最大值一定在Extreme Points, We can add an optimality cut: 
+	- \\( z \ge f(x) + (b- F(x))^T u^{j_k}\\)  (enlarge L1)
+	- Dual 的solution 就是它optimal的一个upper bound: 所以, \\( u_b = \min\\{ u_b, f(x^k) + (b - F(x^k))^T u^{j_k} \\} \\)。 这个 upper bound lower bound 很tricky ,  \\( z \le \\) something, 我们求的是 z 的最小值, 所以 这个something 应该越来越小, 然后 我们的 z 可以 squeeze 到这个 更小的数, 这就为啥是 upper bound 的意思。
+	- We need to meed the minimum upper bound == maximum lower bound
 
 
-
-
+	
 
 
 

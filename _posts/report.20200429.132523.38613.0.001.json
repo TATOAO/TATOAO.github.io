@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20200414.224038.80154.0.001.json",
-    "dumpEventTime": "2020-04-14T22:40:38Z",
-    "dumpEventTimeStamp": "1586875238724",
-    "processId": 80154,
+    "filename": "report.20200429.132523.38613.0.001.json",
+    "dumpEventTime": "2020-04-29T13:25:23Z",
+    "dumpEventTimeStamp": "1588137923327",
+    "processId": 38613,
     "cwd": "/Users/tatoaoliang/Documents/TATOAO.github.io/_posts",
     "commandLine": [
       "node",
@@ -52,73 +52,73 @@
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 73679660,
+        "user": 9003190,
         "nice": 0,
-        "sys": 39491360,
-        "idle": 329955070,
+        "sys": 4093250,
+        "idle": 45812850,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 7016610,
+        "user": 742690,
         "nice": 0,
-        "sys": 4453200,
-        "idle": 431553830,
+        "sys": 547720,
+        "idle": 57617420,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 63826480,
+        "user": 8044620,
         "nice": 0,
-        "sys": 28437620,
-        "idle": 350760150,
+        "sys": 2735400,
+        "idle": 48127820,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 6768220,
+        "user": 694430,
         "nice": 0,
-        "sys": 3918770,
-        "idle": 432336610,
+        "sys": 461660,
+        "idle": 57751730,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 52475270,
+        "user": 6541160,
         "nice": 0,
-        "sys": 21741460,
-        "idle": 368807450,
+        "sys": 2155050,
+        "idle": 50211620,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 6659310,
+        "user": 685180,
         "nice": 0,
-        "sys": 3583020,
-        "idle": 432781190,
+        "sys": 433860,
+        "idle": 57788780,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 43136920,
+        "user": 5919510,
         "nice": 0,
-        "sys": 17219460,
-        "idle": 382667730,
+        "sys": 1756620,
+        "idle": 51231700,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
         "speed": 2700,
-        "user": 6627380,
+        "user": 679130,
         "nice": 0,
-        "sys": 3299910,
-        "idle": 433096170,
+        "sys": 395390,
+        "idle": 57833290,
         "irq": 0
       }
     ],
@@ -156,13 +156,13 @@
         "address": "fe80::aede:48ff:fe00:1122",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
-        "scopeid": 4
+        "scopeid": 5
       },
       {
         "name": "en0",
         "internal": false,
         "mac": "f0:18:98:11:86:56",
-        "address": "fe80::1490:bfc3:eb7d:d3dc",
+        "address": "fe80::18fd:217e:76ff:d2e2",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 6
@@ -178,26 +178,26 @@
       {
         "name": "awdl0",
         "internal": false,
-        "mac": "72:cb:c4:0d:e7:b9",
-        "address": "fe80::70cb:c4ff:fe0d:e7b9",
+        "mac": "a6:3d:88:8e:cb:52",
+        "address": "fe80::a43d:88ff:fe8e:cb52",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
-        "scopeid": 8
+        "scopeid": 13
       },
       {
         "name": "llw0",
         "internal": false,
-        "mac": "72:cb:c4:0d:e7:b9",
-        "address": "fe80::70cb:c4ff:fe0d:e7b9",
+        "mac": "a6:3d:88:8e:cb:52",
+        "address": "fe80::a43d:88ff:fe8e:cb52",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
-        "scopeid": 9
+        "scopeid": 14
       },
       {
         "name": "utun0",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::c1a7:7149:324a:8cd8",
+        "address": "fe80::88bb:ace0:bbd9:a8cf",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 15
@@ -206,7 +206,7 @@
         "name": "utun1",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::44b0:78b8:21ae:ffcf",
+        "address": "fe80::b4dd:6c37:d626:4bfd",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 16
@@ -215,7 +215,7 @@
         "name": "utun2",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::5cd3:19d9:9863:7bbe",
+        "address": "fe80::64da:3647:ff68:7bc4",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 17
@@ -224,7 +224,7 @@
         "name": "utun3",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::8f65:948f:1f19:31d7",
+        "address": "fe80::87ea:fc6f:58b9:9b39",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 18
@@ -233,7 +233,7 @@
         "name": "utun4",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::e697:a61c:cf2b:2330",
+        "address": "fe80::3b4e:ca99:10b9:a40c",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 19
@@ -242,7 +242,7 @@
         "name": "utun5",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::61b:cdec:4d7a:3711",
+        "address": "fe80::7a8f:778a:f634:2077",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 20
@@ -251,7 +251,7 @@
         "name": "utun6",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::5a99:b8fe:9664:85ed",
+        "address": "fe80::baa1:b422:87d8:c0f",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 21
@@ -260,28 +260,10 @@
         "name": "utun7",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::c8c5:a06a:f079:a20",
+        "address": "fe80::da36:de62:226d:f46f",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 22
-      },
-      {
-        "name": "utun8",
-        "internal": false,
-        "mac": "00:00:00:00:00:00",
-        "address": "fe80::7032:e18d:5e15:5fe",
-        "netmask": "ffff:ffff:ffff:ffff::",
-        "family": "IPv6",
-        "scopeid": 23
-      },
-      {
-        "name": "utun9",
-        "internal": false,
-        "mac": "00:00:00:00:00:00",
-        "address": "fe80::c420:dc4e:56e6:7b81",
-        "netmask": "ffff:ffff:ffff:ffff::",
-        "family": "IPv6",
-        "scopeid": 24
       }
     ],
     "host": "TATOAOdeMacBook-Pro.local"
@@ -346,15 +328,15 @@
       "symbol": "Builtins_CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit [/usr/local/bin/node]"
     },
     {
-      "pc": "0x00000001008d5a83",
-      "symbol": "Builtins_StringSubstring [/usr/local/bin/node]"
+      "pc": "0x000001cee921bad2",
+      "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 2144161792,
-    "totalCommittedMemory": 2142675352,
-    "usedMemory": 2132099824,
-    "availableMemory": 56883392,
+    "totalMemory": 2150670336,
+    "totalCommittedMemory": 2149268584,
+    "usedMemory": 2137684432,
+    "availableMemory": 49218424,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -366,37 +348,37 @@
       },
       "new_space": {
         "memorySize": 2097152,
-        "committedMemory": 1126600,
+        "committedMemory": 1222664,
         "capacity": 1047456,
-        "used": 109432,
-        "available": 938024
+        "used": 205632,
+        "available": 841824
       },
       "old_space": {
-        "memorySize": 2129281024,
-        "committedMemory": 2129120640,
-        "capacity": 2124938376,
-        "used": 2123941808,
-        "available": 996568
+        "memorySize": 2132164608,
+        "committedMemory": 2132115616,
+        "capacity": 2126660320,
+        "used": 2126476136,
+        "available": 184184
       },
       "code_space": {
-        "memorySize": 2265088,
-        "committedMemory": 2139392,
-        "capacity": 2154496,
-        "used": 1906656,
-        "available": 247840
+        "memorySize": 2527232,
+        "committedMemory": 2279008,
+        "capacity": 2127776,
+        "used": 2127776,
+        "available": 0
       },
       "map_space": {
-        "memorySize": 7606272,
-        "committedMemory": 7605520,
-        "capacity": 3525200,
-        "used": 3525200,
+        "memorySize": 10227712,
+        "committedMemory": 10226720,
+        "capacity": 5520800,
+        "used": 5520800,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 2600960,
-        "committedMemory": 2600960,
-        "capacity": 2581136,
-        "used": 2581136,
+        "memorySize": 3342336,
+        "committedMemory": 3342336,
+        "capacity": 3318496,
+        "used": 3318496,
         "available": 0
       },
       "code_large_object_space": {
@@ -416,13 +398,13 @@
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 275.938,
-    "kernelCpuSeconds": 7.53078,
-    "cpuConsumptionPercent": 146.118,
-    "maxRss": 2334323113984,
+    "userCpuSeconds": 1612.77,
+    "kernelCpuSeconds": 43.0874,
+    "cpuConsumptionPercent": 58.7183,
+    "maxRss": 2344171339776,
     "pageFaults": {
-      "IORequired": 33,
-      "IONotRequired": 1518319
+      "IORequired": 4227,
+      "IONotRequired": 9763807
     },
     "fsActivity": {
       "reads": 0,
@@ -440,14 +422,14 @@
     "CONDA_PROMPT_MODIFIER": "(base) ",
     "USER": "tatoaoliang",
     "CONDA_EXE": "/Users/tatoaoliang/opt/anaconda3/bin/conda",
-    "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.HqzxZ9WwuW/Listeners",
+    "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.mSjLsGvQia/Listeners",
     "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0xF",
     "FCITX_SOCKET": "/usr/local/switch_layout/",
     "_CE_CONDA": "",
     "PATH": "/usr/local/opt/ruby/bin:/Users/tatoaoliang/opt/anaconda3/bin:/Users/tatoaoliang/opt/anaconda3/condabin:/anaconda3/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tatoaoliang/chromedriver:/Library/TeX/texbin:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
     "CONDA_PREFIX": "/Users/tatoaoliang/opt/anaconda3",
     "PWD": "/Users/tatoaoliang/Documents/TATOAO.github.io/_posts",
-    "LANG": "en_AU",
+    "LANG": "en_AU.UTF-8",
     "XPC_FLAGS": "0x0",
     "SSH_ASKPASS": "/Applications/MacVim.app/Contents/Resources/macvim-askpass",
     "XPC_SERVICE_NAME": "0",
@@ -459,7 +441,6 @@
     "CONDA_DEFAULT_ENV": "base",
     "VIMRUNTIME": "/Applications/MacVim.app/Contents/Resources/vim/runtime",
     "VIM": "/Applications/MacVim.app/Contents/Resources/vim",
-    "SQLITE_EXEMPT_PATH_FROM_VNODE_GUARDS": "/Users/tatoaoliang/Library/WebKit/Databases",
     "_": "/usr/local/bin/instant-markdown-d"
   },
   "userLimits": {
