@@ -244,7 +244,64 @@ Reversible \\( \leftrightarrow \; p_{i,i_1}p_{i_1,i_2} \cdots p_{i_k,i} = p_{i,i
 
 
 
-## General Function 
+## Generating Function 
+
+###### Notation
+
+$$
+\begin{align*}
+	p_k &= P(X = k)  \\
+	\phi_X(s)&= \sum_{k= 0}^{ \infty} p_k s^k = E(s^X) \\
+	p_k &= {\frac{1}{ k!}} \phi_x^{(k)} (0) \text{ k 次导数} \\
+\end{align*}
+$$
+
+它的本意是把, 一个 probabilities distribution 转成 power series
+
+还要注意它的定义域, 我们要
+$$
+\sum_{k= 0}^{ \infty} p_k s^k \text{ converge } \Longleftrightarrow |s| \le 1
+$$
+
+
+###### 性质
+
+1. Convergence: Radius of convergence 
+
+$$
+s \in (-R, R) \text{ the sum converges}
+$$
+
+2. Differentiation 
+
+$$
+\phi_X^{\prime} (s) = \sum_{k= 0}^{ \infty} k p_k s^{k - 1} 
+$$
+
+
+3. Uniqueness
+
+For any X, Y 如果 $$ \phi_X(s) = \phi_Y(s) $$ 那么 $$
+P(X= k) = P(Y=k) \,\, \forall k = 0,1,2,....
+$$
+
+4. Multiplicative property  (If X and Y are independent)
+$$
+\phi_{X+Y} = \phi_X (s) \phi_Y (s)
+$$
+
+
+##### Theorem 期望？在哪里
+
+$$
+\begin{align*}
+	E(X) &= \phi^{ \prime} (1)  \\
+	E(X(X-1)(X-2) \cdots (X-k+1)] &= \phi^{(k)} (1) \\
+\end{align*}
+$$
+
+
+
 
 
 

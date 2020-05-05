@@ -38,7 +38,7 @@ c(d,q) &= \text{cost function}\\
 \end{aligned}
 $$
 
-### 2.1. Deterministic Inventory Model <a name="ch2.1"></a>
+## 2.1. Deterministic Inventory Model <a name="ch2.1"></a>
 
 最简单的情况：
 
@@ -88,9 +88,122 @@ $$
 $$
 
 
+#### EOQ with nonzero lead time
+
+so 我们额外要解决的问题是, \\(R_{}^{}\\)  reorder point 在哪里
+
+$$
+R = \text{ reorder point}
+L = \text{ lead time }\\
+\alpha L = \text{ demand occurred during lead time}
+$$
+
+因为是 deterministic, 所以其实不怎么影响, 之前提前规划就可以了。所以 \\(q_{*}^{}\\) 都和之前一样。
+
+###### Case 1, $$ \underline{ a L \le q^*} $$
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_7.png" alt="2020-03-30-Stochastic_Operation_Research_note_7.png failed" width="600"/>
 
 
-### 2.2. Probabilistic Inventory Model <a name="ch2.2"></a>
+###### Case 2, $$ \underline{ a L > q^* } $$
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_6.png" alt="2020-03-30-Stochastic_Operation_Research_note_6.png failed" width="600"/>
+
+就是 一个 L 长于一个周期了已经, 所以要提前 2个周期以上订货。
+
+__Example__
+
+如果 $$ q^* = 25298 \,\, a = 8000  $$
+
+如果 L = 2 month,  aL = 16000  < 25298 	Re-order point 就是 16000, 库存还剩 16000 的时候就要进货 $$ q^* $$ 的量
+
+
+如果 L = 9 month,  aL = 72000  > 25298 	Re-order point 就是 $$aL - k*q^* $$ 找到一个 k, 让它恰好 在 $$ < q^* $$ 的区间内, 这个例子是 k = 2 , 既 库存还剩 72000 - 2 * 25298 的时候就要进货 $$ q^* $$ 的量
+
+
+
+## Continuous - rate EOQ model
+这次, 货物不是凭空长的, 是一点一点运进去的, 所以有了 这个continuous model
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_8.png" alt="2020-03-30-Stochastic_Operation_Research_note_8.png failed" width="600"/>
+
+Notation:
+
+$$
+\begin{align*}
+	r &= \text{ 进货的速度} \\
+	a &= \text{ 需求速度} \\
+	{\frac{a}{q}} &= 一年有这么多个 cycle \\ 
+	{\frac{q}{a}} &= 一个cycle (unit time) 占多少年 \\ 
+\end{align*}
+$$
+
+从图像三角形的面积得出： 
+$$
+\begin{align*}
+	 \text{holding cost per cycle }&= {\frac{1}{2}} {\frac{q}{r}} (r - a) \cdot {\frac{q}{a}} \cot h  = {\frac{h q^2 (r-a) }{2ra}} \\
+	\text{ total cost per unit time}TC(q) &= {\frac{Ka}{q}}  + Ca + {\frac{hq(r-q)}{2r}}\\ 
+\end{align*}
+$$
+
+结论：
+$$
+\begin{align*}
+	q^* &= \sqrt{ {\frac{2Kar}{h(r-a)}} }  \\
+\end{align*}
+$$
+
+
+### 买多有打折问题
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_9.png" alt="2020-03-30-Stochastic_Operation_Research_note_9.png failed" width="600"/>
+
+买的越多越便宜, 所以很明显的, 最低点就在每一段的 $$ q^* $$ 点, 或者在下一段的开头点.
+
+### Periodic review Model ( 最短距离问题)
+
+前提假设
+1. Demand 不连续
+2. 进货 L = 0
+3. No shortages
+
+Notation：
+
+$$
+\begin{align*}
+	i (i = 1,2,3...,N) &= \text{period} \\
+	r_i &= \text{demand for peroid i }\\
+	K_i &=  \text{set up cost if purchases in i}\\
+	c_i &= \text{ i 时段的单价} \\
+	h_i &= \text{ i 时段的储藏费} \\
+	& \\
+	x_i &= \text{ i 时刻的库存量, 被消费前}\\
+	z_i &=  \text{ i 时段的购买量}\\
+	x_{i+q} &= x_i + z_i - r_i \text{ 下一时段的库存量 = 上一次的库存 + 买的 - 被消费的}\\
+\end{align*}
+$$
+
+__Example__
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_10.png" alt="2020-03-30-Stochastic_Operation_Research_note_10.png failed" width="600"/>
+
+首先, 
+
+把整个路径的都画出来。
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_11.png" alt="2020-03-30-Stochastic_Operation_Research_note_11.png failed" width="600"/>
+
+然后 从后往前的遍历全部路径
+
+<img src="/post_asset/2020-03-30-Stochastic_Operation_Research_note_12.png" alt="2020-03-30-Stochastic_Operation_Research_note_12.png failed" width="600"/>
+
+
+然后找到最优的方案。
+
+
+
+
+## 2.2. Probabilistic Inventory Model <a name="ch2.2"></a>
 
 - 2.2.1 Optimal Cost
 	1. Without Lead time

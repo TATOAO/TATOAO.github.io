@@ -472,8 +472,125 @@ $$ u_1 (D, CD; c_1 = 0.5) = {\frac{1}{4}} \times  1 + {\frac{3}{4}} \times 0 = 0
 
 
 
-### Chapter 4 不完全信息 动态博弈
-### Chapter 5 合作博弈
+# Chapter 4 不完全信息 动态博弈
+
+## Perfect Bayesian Equilibrium
+
+首先来一个例子。
+
+<img src="/post_asset/2020-03-31-Game_Thory_21.png" alt="2020-03-31-Game_Thory_21.png failed" width="400"/>
+
+我们如果用 Best Response 这个最general 的方法：
+
+<img src="/post_asset/2020-03-31-Game_Thory_22.png" alt="2020-03-31-Game_Thory_22.png failed" width="400"/>
+
+会得到两个 Nash equilibria. 但是第二个是一个 __Noncredible Threat__ 现在的问题是我们怎么去去除这个 NE。 (Note 这个game 没有 subgame 以前我们可以用 subgame perfect 来判断)
+
+有一个方法是, 因为主要的问题是 player2 不知道 player 1 玩的 L 还是 M。 所以不好计算。 所以我们给它一个believe, player 2 判断 player 1 有多大机率玩的 L 或 M。 
+
+<img src="/post_asset/2020-03-31-Game_Thory_23.png" alt="2020-03-31-Game_Thory_23.png failed" width="500"/>
+
+这样player 2 的 期望payoff 就是：
+<img src="/post_asset/2020-03-31-Game_Thory_24.png" alt="2020-03-31-Game_Thory_24.png failed" width="500"/>
+
+所以 2 - p > 1 - p , 我们就可以把 R' 去掉了
+
+但是有时候, 不同的believe 可能会有不同的选择。
+
+比如这个例子：
+
+<img src="/post_asset/2020-03-31-Game_Thory_25.png" alt="2020-03-31-Game_Thory_25.png failed" width="500"/>
+
+如果 player 1 认为 p = 0, 那 player 2 一定会出 R, 自己就会出 X。 
+但是如果 player 1出 X, player 2 其实应该出 L。 所以 这样就会让player 1 的收益 为1, 那样还不如一开始选 A。 所以(AX, L) 是一个solution。
+
+但是如果我们看 NE：
+
+<img src="/post_asset/2020-03-31-Game_Thory_26.png" alt="2020-03-31-Game_Thory_26.png failed" width="400"/>
+
+最后的 NE是：  <img src="/post_asset/2020-03-31-Game_Thory_27.png" alt="2020-03-31-Game_Thory_27.png failed" width="400"/> 
+
+所以, p = 0, 不是一个 NE。
+
+
+##### 如何限制 believe 
+
+#### Perfect Bayesian equilibrium
+
+Definition: Perfect Bayesian equilibrim 的 strategies 和 beliefs 要满足下面两个条件。
+
+###### sequentially rational
+
+就是belief 要 让 action optimal
+
+
+###### consistency
+
+每个 beliefs are determined by Bayes' rule and the players' strategies. 
+
+注意： 这个 belief 是大家都知道的。
+
+
+###### Example 1 举个例子：
+
+<img src="/post_asset/2020-03-31-Game_Thory_28.png" alt="2020-03-31-Game_Thory_28.png failed" width="500"/>
+
+这个例子的
+ \\( (R, R') \\) 是一个 RE, 但不是一个 Perfect Bayesian Equilibrium
+ \\( (L, L') \\) 是一个 RE, 可以是一个 Perfect Bayesian Equilibrium 在适当的believe的时候。
+
+解释：
+
+(R, R') 
+- Consistency, 如果player 1 选 R, 根本达不到 stage 2, 所以 p 可以是任意值
+- Sequential rationality, 把 p 代入发现 L' expected payoff is 2 - p. R' 的 expected payoff 是 1 - p . 所以 R' 根本不是 optimal 所以不是一个 P B E。
+
+(L, L')
+- Consistency.  既然player 1 选 L, 那 P = 1
+- Sequential rationality. 如果 P = 1 , 带进去发现 L' 确实是一个 optimal。 然后我们还要对player 1 判定。 (有点像 倒过来求的那个) Player 1 的 payoff L = 2, M= 0, R= 1 所以对player 1 也是 optimal, 
+
+综上, (L, L') 确实是一个 optimal
+
+
+###### Example 2
+
+
+
+
+
+
+## Signaling Games
+
+###### Notation
+有两个角色的人, 一个是 Sender (S) 一个是 Receiver (R)。 
+
+现况的 space 是 $$ T = \{t_1,t_2,...,t_I\} $$
+
+有一个概率分布 $$ P(t_i) $$
+
+S 可以提前观察到现况, 然后发消息m 给 R。 
+
+$$
+m \in M = \{ m_1, .., m_J \} 
+$$
+
+
+R 根据 消息 m 作出 action $$ a \in A = \{ a_1, ..., a_K \} $$. 
+
+Payoff: $$ U_s(t_i, m_j, a_k) $$ $$U_R(t_i,m_j,a_k)$$
+
+一个最简单的两个 message type 两个 state t 的例子：
+
+<img src="/post_asset/2020-03-31-Game_Thory_29.png" alt="2020-03-31-Game_Thory_29.png failed" width="550"/>
+
+或者是
+
+<img src="/post_asset/2020-03-31-Game_Thory_30.png" alt="2020-03-31-Game_Thory_30.png failed" width="550"/>
+
+
+
+
+# Chapter 5 合作博弈
 
 
 

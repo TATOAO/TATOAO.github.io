@@ -259,6 +259,44 @@ Proof:
 
 <img src="/post_asset/2020-03-31-VIsual_data_5.png" alt="2020-03-31-VIsual_data_5.png failed" width="500"/>
 
+##### 要记忆的特殊情况 1 / sinc
+
+$$
+\begin{align*}
+	 f &= \boldsymbol{1}_{[-T,T]} \\
+	\widehat{f} ( \omega) &= \int_{-T}^{T} e^{-i \omega t} dt = {\frac{2 sin(T \omega)}{ \omega }} = 2T {\frac{sin (T \omega)}{T \omega}} = 2T sinc (T \omega)   
+\end{align*}
+$$
+
+反过来的情况
+
+$$
+\begin{align*}
+	\widehat{h} ( \omega) &= \boldsymbol{1}_{ [- \eta, \eta]}  \\
+	h(t) &= {\frac{1}{2\pi}} \int_{ -\eta}^{\eta} e^{i \omega t}  d \omega = {\frac{sin ( \eta t)}{ \pi t }} =  {\frac{\eta}{\pi}} sinc( \eta t) .  \\
+\end{align*}
+$$
+
+
+##### 要记忆的特殊情况 Gaussian
+
+Gaussian $$ f(t) = e^{- t^2} $$ 的 Fourier transform is also a Gaussian
+
+$$
+\widehat{g} ( \omega) = \sqrt{\pi} e^{ - {\frac{ \omega^2}{ 4}} }  
+$$
+
+这是用 微分方程 求的：
+
+$$
+\begin{align*}
+	\widehat{f}( \omega) &=  \int_{ \mathbb{R}} e^{- t^2} e^{ - i \omega t} dt  \text{ 恰好是一个 ode}\\
+	2( \widehat{f}( \omega)) \prime + \omega \widehat{f}( \omega) = 0\\
+\end{align*}
+$$
+
+ 
+
 ###### $$ \underline{\widehat{g}(- \omega) = \widehat{g}^* ( \omega)}$$
 
 $$
@@ -325,6 +363,109 @@ $$
 
 
 
+
+
+
+## Discrete World!
+
+Context: Notation: 现在我们要对付 不连续的数据：
+
+$$
+f_d(t) = \sum_{n \in \mathbb{Z}} f(nT) \delta (t - nT)\\
+$$
+
+每个周期一个数据
+
+对应的 傅立叶转换
+
+$$
+\begin{align*}
+	\widehat{f}_d( \omega) &= \int_{ \mathbb{R}} \sum_{n \in \mathbb{Z}} f(nT) \delta (t - nT) e^{ - i t \omega} dt \\
+			&=  \sum_{n \in \mathbb{Z}} f(nT) \int_{ \mathbb{R}} \delta ( t - nT) e^{ -i t \omega} dt  \\
+			&= \sum_{n \in \mathbb{Z}} f(nT) e^{-inT \omega} \\
+\end{align*}	
+$$
+
+
+#### Possion Formula
+
+$$
+\sum_{n \in \mathbb{Z}} e^{- i n T \omega}  = {\frac{2\pi}{T}} \sum_{k \in \mathbb{Z}} \delta ( \omega - {\frac{2\pi}{T}} )
+$$
+
+证明：
+主要就是利用, 两边的函数的周期性 $$ {\frac{2\pi}{T}} $$
+
+代价于：
+
+$$
+\sum_{n \in \mathbb{Z}} e^{- in T \omega} = {\frac{2\pi}{T}} \sum_{n \in \mathbb{Z}} \delta ( \omega - {\frac{2\pi k}{T}}) = {\frac{2\pi}{T}} \delta ( \omega ). \,\,\,  \forall \,\, \omega \in [ - {\frac{\pi}{T}}, {\frac{\pi}{T}}).   
+$$
+ 
+
+为了简化, 我们取 $$ u ( \omega) = \sum_{n \in \mathbb{Z}} e^{ - i n T \omega} $$.
+Then for any $$ f \in L^2_{[- {\frac{\pi}{T}}, {\frac{\pi}{T}} ]}  $$ 这也是一个 $$ {\frac{2\pi}{T}} $$ 为周期的函数。
+
+我们有：
+
+$$
+\begin{align*}
+	(f \ast u) (t) &= \int_{ \mathbb{R}} f( \omega) u (t - \omega) d \omega  \\
+	&= \int_{ \mathbb{R}} f( \omega) \sum_{n \in \mathbb{Z}} e^{ - i n T (t - \omega) } d \omega \\
+	&= \sum_{n \in \mathbb{Z}} ( \int_{ -{\frac{\pi}{T}}}^{ {\frac{\pi}{T}}}f ( \omega ) e^{ i n T \omega } d \omega) e^{ - i n T t}  \\
+	&= \sum_{n \in \mathbb{Z}} \langle f( \cdot), e^{-inT \cdot}  \rangle e^{ - i n T t}   \\
+\end{align*}
+$$
+
+然后根据, Orthonormal basis for $$ L^2_{[- {\frac{\pi}{T}}, {\frac{\pi}{T}} ]}$$
+
+$$
+\sqrt{ {\frac{T}{2 \pi}} } \{ e^{-n T t}  \}_{n \in \mathbb{Z}} 
+$$
+
+也就是说, 对任意的 f：
+$$
+f(t) = {\frac{T}{2 \pi}} \sum_{n \in \mathbb{Z}} ( \int_{ -{\frac{\pi}{T}} }^{ {\frac{\pi}{T}} } f( \omega) e^{ in T \omega}   d \omega ) e^{- i n T t} 
+$$
+
+对比刚刚的式子：
+
+$$
+(f \ast u) (t) = \sum_{n \in \mathbb{Z}} (\int_{ -{\frac{\pi}{T}} }^{ {\frac{\pi}{T}} } f( \omega ) e^{ i n T \omega } d \omega ) e^{ -i n T t} = {\frac{2\pi}{T}}
+$$
+
+然后又根据 任意 function 和 dirac 的 convolution 等于自身：$$ f \ast \delta	(t) = f(t)$$
+
+所以总结下前面的过程, 在 $$ L^2_{ [-{\frac{\pi}{T}}, {\frac{\pi}{T}}] }$$：
+$$
+(f \ast u) (t) = {\frac{2\pi}{T}} f(t) = {\frac{2\pi}{T}} (f \ast \delta) (t) \\
+\to u = {\frac{2\pi}{T}} \delta 
+$$
+
+
+
+##### Fundamental Lemma
+
+$$
+\widehat{f}_d ( \omega)  = {\frac{1}{T}} \sum_{k \in \mathbb{Z}} \widehat{f}( \omega - {\frac{2k\pi}{T}})
+$$
+
+
+##### Shannon sampling theorem 
+
+If the support of $$ \widehat{f} $$ is included in $$ [- {\frac{\pi}{T}}, {\frac{\pi}{T}}] $$ then
+
+$$
+f(t) = \sum_{n \in \mathbb{Z}} f(n T) h_T (t - nT)
+$$
+
+with
+
+$$
+h_T(t) = T {\frac{sin ( {\frac{\pi t}{T}} )}{\pi T}} = sinc( {\frac{\pi t}{ T}})  
+$$
+
+这就是一个总结, 如何从 sample里还原原function。 注意条件, support of \\( \widehat{f}\\) 要包含  $$ [- {\frac{\pi}{T}}, {\frac{\pi}{T}}] $$  why？
 
 
 
@@ -417,41 +558,185 @@ $$
 	g(t) &= g(-t)  \text{ a real and symmetric windows}\\
 	g_{u, \xi} &= e^{i \xi t} g(t - u). \\
 	\|  g_{u,\xi} \|_2 &= 1, \forall (u,\xi) \in \mathbb{R}^{2}  \text{ normalized}\\
-	Sf(u,\xi) &=   f(t) g(t - u) e^{-i \xi t} dt \\
+	Sf(u,\xi) &=   \int_{ \mathbb{R}} f(t) g(t - u) e^{-i \xi t} dt \\
 	& \text{ S the Windowed fourier transform}\\
 \end{align*}
 $$
 
 所以这和上一个section一样, 都是定义一个抽象的 measure, 这个叫做 Windowed Fourier transform。 
 
-同理,我们 也可以从统计的原理分析它的 Variance
-
 $$
 \begin{align*}
 	g_{u, \xi} &= e^{i \xi t} g(t - u) \\
-	\widehat{g} ( u, \xi) &= {\frac{1}{2\pi}} \\
 	\widehat{g} (u, \xi) &= \int_{ \mathbb{R}} e^{i \xi t} g(t - u) e^{ - i \omega t} dt \\
-			&= \int_{ \mathbb{R}} e^{i \xi (t-u)} g(t - u) e^{ - i \omega (t-u)} d(t-u) \\
-			&= \int_{ \mathbb{R}} e^{i \xi x} g(t - u) e^{ - i \omega x} dx \\
-	\widehat{g} ( u, \xi) &= e^{-i u ( \omega - \xi)} \widehat{g}( \omega - \xi)\\
+			&= \int_{ \mathbb{R}} e^{i \xi (t + u)} g(t + u -u) e^{ - i \omega (t+u)} d(t+u) \\
+			&= \int_{ \mathbb{R}} e^{i \xi (t + u)} g(t) e^{ - i \omega (t+u)} d(t) \\
+			&= \int_{ \mathbb{R}} g(t) e^{ - i (\omega -\xi) (t+u)} d(t) \\
+			&= e^{-i u ( \omega - \xi)} \widehat{g}( \omega - \xi)\\
 \end{align*}
 $$
 
 
+
+同理,我们 也可以从统计的原理分析它的 Variance
 $$
 \begin{align*}
 	\sigma_t^2 &= \int_{ \mathbb{R}} t^2 |g(t)|^2 dt  \\
-	\sigma_{ \omega}^2 &= \\
+	\sigma_{ \omega}^2 &= \int_{ \mathbb{R}} (\omega - \xi)^2 | \widehat{g}_{u, \xi} ( \omega)|^2 d \omega = {\frac{1}{2\pi}} \int_{ \mathbb{R}} \omega^2 | \widehat{g} ( \omega) | d \omega \\
+\end{align*}
+$$
+这个是 independent of $$ (u , \xi) $$ 的。
+
+我们现在举几个例子： 
+
+###### Sinusoidal wave 
+
+$$
+\begin{align*}
+	f(t) &= e^{ i \xi_0 t} \\
+	\text{ 这个的 Fourier transform 是一个  Dirac, 需要记忆的}\\
+	{\frac{1}{2\pi}} \int_{ \mathbb{R}} \delta (t - \xi_0) e^{ i t \omega } dt	&= {\frac{1}{2\pi}} e^{i \xi_0 \omega t} \text{ inverse fourier} \\
+	\widehat{f}( \omega) &= 2 \pi \delta ( \omega - \xi_0) \\
+\end{align*}
+$$
+
+所以它的 Windows Fourier Transform是
+
+$$
+\begin{align*}
+	S f(u,\xi) &= \int_{ \mathbb{R}} f(t) g(t -u) e^{ - i \xi t}  dt   \\
+	&= \int_{ \mathbb{R}} e^{ i \xi_0 t}  g(t -u) e^{ - i \xi t}  dt   \\
+	&=  \int_{ \mathbb{R}} e^{i \xi_0 t} g(t) e^{ - i \xi ( t + u)} d t \\
+	&= \int_{ \mathbb{R}} e^{ - i \xi u} g(t) e^{ -i \xi t + i \xi_0 t} dt\\  
+	&= \int_{ \mathbb{R}} e^{ - i \xi u} g(t) e^{ -i (\xi - \xi_0) t } dt\\  
+	&= e^{ - i \xi u} \int_{ \mathbb{R}} g(t) e^{ -i (\xi - \xi_0) t } dt\\  
+	&= e^{ - i \xi u} \widehat{g} ( \xi - \xi_0) \\  
 \end{align*}
 $$
 
 
+###### Dirac
+
+$$
+\begin{align*}
+	f(t) &= \delta (t - u_0)  \\
+	S f(u, \xi) &= \int_{ \mathbb{R}} f(t) g(t - u) e^{ - i \xi t} dt\
+\ 
+	&= \int_{ \mathbb{R}} \delta (t - u_0) g(t - u) e^{ -i \xi t} dt \\
+	&=  g(u_0 - u) e^{ -i \xi u_0} \\
+\end{align*}
+$$
+
+Its energy is spread over the time interval $$ [ u_0 - {\frac{\sigma_t}{2}} , u_0 + {\frac{\sigma_t}{2}}] $$ 
+
+##### Gabor is one type of Windowed Fourier transform 
+
+$$
+g_{u,\xi} = e^{ i \xi t } g(t - u) = e^{i \xi t} e^{ - {\frac{t - u^2}{\sigma^2}} } 
+$$
+
+用的其实是 Gaussian 的内核. 完整的 Gabor system
+
+$$
+\{ g(t - u_0 j) e^{ i 2 \pi \eta_0 k t} \}_{j,k \in \mathbb{Z}}
+$$
+
+### The only the 1 function forms an Orthonormal basis for \\( L^2( \mathbb)\\)
+
+Among all the Gabor window, with supp(g) = [0,b] , only one can be the Orthonormal basis. That is
+
+$$ g(t) = 1_{[0,1]} (t) $$
+
+###### "if" <- 1 is an orthonormal basis
+
+我们主要是用的
+
+Plancherel's identity 
+$$
+\| f \|^2 = \sum_n | \langle f,v_n \rangle |^2 
+$$
+
+所以我们要求
+
+$$
+\begin{align*}
+	\| f \|_2^2  &= \int_{ \mathbb{R}} | f(t) |^2 dt = \sum_{j \in \mathbb{Z}} \int_{j}^{j + 1} |f(t)|^2 dt = \sum_{j \in \mathbb{Z}} \| f(t) \boldsymbol{1}_{[j,j+1]} (t) \|_{2}^2   \\
+\end{align*}
+$$
+
+然后我们转到了 每个 $$ [j, j+1] $$ 的小区间。而这个小区间, 我们已经有了 一个basis： for any $$ L^2_{[j,j+1]} $$
+$$
+\{ e^{i 2 \pi k t} \}_{k \in \mathbb{Z}}  
+$$
+
+所以
+
+$$
+\begin{align*}
+	\| f(t) \boldsymbol{1}_{[j,j+1]} (t) \|^2  &= \sum_{j \in \mathbb{Z}} | \langle f(t) \boldsymbol{1}_{[j,j+1]}, e^{i 2 \pi k t} \rangle |^2  \\
+\end{align*}
+$$
+
+然后再把每一个部分拼接起来
+
+$$
+\begin{align*}
+	\| f \|_2^2  &= \sum_{j \in \mathbb{Z}} \sum_{k \in \mathbb{Z}} | \langle f(t) \boldsymbol{1}_{[j,j+1]} (t), e^{i 2\pi kt}  \rangle |^2  \\
+	&=  \sum_{j \in \mathbb{Z}} \sum_{k \in \mathbb{Z}} | \langle f(t) g(t - j), e^{i 2\pi kt}  \rangle |^2\\
+	&=  \sum_{j \in \mathbb{Z}} \sum_{k \in \mathbb{Z}} | \langle f(t), g(t - j) e^{i 2\pi kt}  \rangle |^2\\
+\end{align*}
+$$
+
+这样我们就已经说明了, $$\{ g(t-j) e^{i 2 \pi k t} \}_{k \in \mathbb{Z}} $$ 这是一个 Orth basis了。
 
 
 
+###### " only if"  an orthonormal basis -> must be 1 
+
+已知有, $$ \{ g(t-j) e^{i 2 \pi k t} \}_{k \in \mathbb{Z}}$$  是一个 orth basis
 
 
+First, 我们要先证明 support  是 [0, 1] 
 
+$$ g(t), g(t-1) $$ 是basis 里的成员, 根据正交的属性, 有
+$$
+\langle g(t), g(t-1) \rangle = \int_{ \mathbb{R}} g(t)g(t-1) dt = 0 
+$$
+
+因为我们的, g 的设定就是 恒 \\(\ge 0\\) 的。所以如果 b>1 我们这个 inner product 就不会为 0 了, 
+
+如果 b <  1 , 那就相当于, 这个basis 有空隙, 没办法 complete 所以也不能构成 orth basis。 
+
+如此, b 只能为 1 。
+
+(其实这个结果也是显然的, k 取得是全体整数, 如果它不是整数, 或者是 偶数, b也不一样)
+
+然后 我们取 两个 不同的基 作inner product
+
+$$
+\begin{align*}
+	\langle g(t) e^{i 2 \pi k t},  g(t) e^{i 2 \pi j t} \rangle  &= 0  \\
+	= \langle |g(t)|^2 , e^{ i 2 \pi (j -k) t}  \rangle & \;\;\;\, j - k = n \text{ 所以 n 可以是不为0 的任意整数 ( j != k )}\\
+	= \int_{0}^{1} |g(t)|^2 e^{-i 2\pi n t} dt & \text{ 因为support 是 0-1} \\
+\end{align*}
+$$
+
+恰好, 
+$$ \{ e^{i 2 \pi n t }  \}_{n \in \mathbb{Z}} $$ 是 一个 \\( L^2_{[0,1]}\\) 的 orth basis 所以, 既然 for any \\( n \ne 0\\) 都成立, $$ \vert g(t)\vert ^2 = e^{i 2\pi 0 t} = 1 $$ 
+
+proof done
+
+
+### Wavelet transform
+
+ 前面的做法有一个问题, 就是它不管sample function的情况, 它是一个fixed的 window 和 固定的 frequency 集去测量它。
+
+Wavelet 就是这样一个improve, 它先decompose 出不同的  frequency 然后去用不同的basis去度量。
+
+$$
+W f(u,s) = \int_{ \mathbb{R}} f(t) \psi_{u,s}^* (t) dt = \int_{ \mathbb{R}} f(t) {\frac{1}{ \sqrt{s} }} \psi^* ( {\frac{t - u}{s}} ) d t \\
+\{ \psi_{j,n} (t) = {\frac{1}{ \sqrt{2} }} \psi ( {\frac{t - 2^j n}{2^j}} ) \}_{j,n \in \mathbb{Z}}  \text{ 这只是其中一个 example}
+$$ 
 
 
 ###### Multi-resolution analysis 
@@ -565,7 +850,7 @@ $$
 ???
 
 
-#### Fourier series 联系 
+#### 和 Fourier 的关系
 
 Notation:
 
@@ -577,8 +862,7 @@ $$
 \end{align*}
 $$
 
-
-我们想要结论：
+Property：
 $$
 \Psi ( \omega) = 1 , \forall \omega \in \mathbb{R}.
 $$
@@ -716,6 +1000,39 @@ $$
 $$
 
 这个到底有什么用呢？
+
+
+
+## the whole orthonormal basis
+
+Notationn
+
+$$
+\begin{align*}
+	\widehat{\psi} ( \omega) &= {\frac{1}{ \sqrt{2} }} \widehat{g} ( {\frac{ \omega}{2}}) \widehat{\phi} ( {\frac{ \omega}{2}})   \\
+	\widehat{g} ( \omega) &= e^{-i \omega} \widehat{h}^* ( \omega + \pi) \\
+	h &= \text{ corresponding filter of } \phi \\
+\end{align*}
+$$
+
+basis：
+$$
+\{ \psi_{j,n} (t) \}_{j,n \in \mathbb{Z} = \{ {\frac{1}{ \sqrt{2^j} }} \psi( {\frac{t - 2^jn}{2^j}})  \}_{i,j \in \mathbb{Z}} 
+$$
+
+这门课不要求这个怎么来的, 但要记住这个：
+
+$$
+g[n] = (-1)^{1-n} h[1-n]
+$$
+
+更general 的形式：
+
+$$
+\phi_{j,n} = \sum_{l} h_{l - 2n} \phi_{j-1,l}
+\psi_{j,n} = \sum_{l} g_{l - 2n} \phi_{j-1,l}
+$$
+
 
 
 
