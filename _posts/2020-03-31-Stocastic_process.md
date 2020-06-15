@@ -264,6 +264,52 @@ $$
 $$
 
 
+###### Example
+
+Bernoulli
+
+$$
+\begin{align*}
+	X &\sim Be(p)  \\
+	P(X = 0) &= 1 - p \\
+	P(X = 1) &= p \\
+	\phi_X(s) &= 1-p + p s \\
+\end{align*}
+$$
+
+
+Geometric (直到第一次出现 X = 1)
+
+$$
+\begin{align*}
+	X &\sim Geom(p)  \\
+	q &= (1-p) \\
+	\phi_X(s) &= \sum_{k= 0}^{ \infty} s^k P(X=k) 
+	= \sum_{k= 0}^{ \infty} s^k p q^{k-1} = ps \sum_{k= 0}^{ \infty} (qs)^{k-1} \\
+	&= {\frac{ps}{1-qs}} 
+\end{align*}
+$$
+
+Poisson
+
+$$
+\begin{align*}
+	X &\sim poisson(\lambda)   \\
+	\mathbb{E} ( s^X) &= \sum_{k= 0}^{ \infty} s^k P(X=k)\\
+			&= \sum_{k= 0}^{ \infty} {\frac{ \lambda^k e^{- \lambda} }{ k!}} s^k
+	&= e^{ - \lambda} \sum_{k= 0}^{ \infty} {\frac{( \lambda e)^k}{k!}} = e^{- \lambda + \lambda k}   
+\end{align*}
+$$
+
+用了 \\( e^{x} \\) 的泰勒展开
+$$
+e^{x} = 1 + x + {\frac{x^2}{2!}} + ... = \sum_{k= 0}^{ \infty} {\frac{x^k}{k!}}  
+$$
+
+
+
+
+
 ###### 性质
 
 1. Convergence: Radius of convergence 
@@ -296,7 +342,7 @@ $$
 $$
 \begin{align*}
 	E(X) &= \phi^{ \prime} (1)  \\
-	E(X(X-1)(X-2) \cdots (X-k+1)] &= \phi^{(k)} (1) \\
+	E[X(X-1)(X-2) \cdots (X-k+1)] &= \phi^{(k)} (1) \\
 \end{align*}
 $$
 

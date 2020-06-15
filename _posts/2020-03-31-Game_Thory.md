@@ -593,6 +593,84 @@ Payoff: $$ U_s(t_i, m_j, a_k) $$ $$U_R(t_i,m_j,a_k)$$
 # Chapter 5 合作博弈
 
 
+## Payoff pairs
+
+Notation:
+
+$$
+\begin{align*}
+	H &\subset R^2 \text{ is the payoff pair} \\
+	d &= (d_1, d_2) \in H \text{ the point d is called the threat point} \\
+	u &\in H \text{ iff a joint action of two players to achieve the payoff u. } \\
+	\Gamma &= (H,d) \text{ two person bargaininng game}\\
+	W &=  \text{ set of two person bargaining games} \\
+\end{align*}
+$$
+
+Definition:
+
+1. Dominates :
+
+$$
+(u,v) \text{ dominates } (u^\prime, v^\prime) \text{ if } u \ge u^\prime \,\, and \,\, v \ge v^\prime
+$$
+
+2. Pareto optimal
+
+If a payoff pairs are not dominated by any other pair : _Pareto optimal_
+
+3. Two person bargaining game - \\(W_{}^{}\\) 
+
+- if $$ H \subset \mathbb{R}^{2} $$ is compact and convex
+- $$ d \in H $$ and
+- \\(H_{}^{}\\) contains at least one element, such that u >> d. 
+
+
+4. Nash bargaining solution is a mapping $$ f: W \to \mathbb{R}^{2} $$ 
+
+#### Example
+
+Labour- management
+
+企业家 action space \\(L_{}^{}\\) 要多少Labor 和工会组织 \\(w_{}^{}\\) 工资 ：
+
+工会的payoff (utility)：
+$$
+u(L, w) = \sqrt{ L w} 
+$$
+
+企业的payoff (utility)
+$$
+\pi = L(100 - L) - wL
+$$
+
+所以 $$ H = \{  (u,\pi) \vert u = \sqrt{L w}, \pi = L (100 -L) - wL  \} 
+
+(0,0) is the threat point
+
+The Nash bargaininng solution maximizes the function 
+
+$$
+(u - d_1) (\pi - d_2) = \sqrt{L w}  [ L(100 - L) - wL]
+$$
+
+
+##### Definition n-person Cooperative Games
+
+$$
+\begin{align*}
+	 N &= \{ 1,2,...,n \}   \\
+	 S &\subseteq N \text{ coalition, nonempmty sebset of N} \\
+	 v(S) &= \text{ characteristic function for coalition } S\\
+	 \Gamma &= (N, v) \text{ the game}
+	 v( \emptyset) = 0 \\
+	 v(K \cup L) \ge v(K) + v(L)
+\end{align*}
+$$
+
+###### Example
+
+The drug game & the Garbage game
 
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
