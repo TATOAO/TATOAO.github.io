@@ -45,19 +45,24 @@ border-right: 15px solid #d2d2d2;
 padding-left: 1%;
 }}
 
-.post-content h4 { font-size: 20px; font-weight: bold; text-decoration: underline;}
-@media screen and (max-width: 800px) { .post-content h4 {font-weight: bold; font-size: 18px; text-decoration: underline;} }
+.post-content h4 { font-size: 20px; font-weight: bold; text-decoration: underline; padding-top: 20px; padding-bottom: 5px;}
 
-.post-content h5 { font-size: 16px; font-weight: bold; text-decoration: underline;}
-@media screen and (max-width: 800px) { .post-content h5 {font-weight: bold; font-size: 15px; text-decoration: underline;} }
+@media screen and (max-width: 800px) { .post-content h4 {font-weight: bold; font-size: 18px; text-decoration: underline; padding-top: 20px; padding-bottom: 5px;} }
 
-.post-content h6 { font-size: 14px; font-weight: bold; text-decoration: underline;}
-@media screen and (max-width: 800px) { .post-content h6 {font-weight: bold; font-size: 12px; text-decoration: underline;} }
+.post-content h5 { font-size: 16px; font-weight: bold; padding-top: 20px; padding-bottom: 5px; text-decoration: underline; padding-top: 20px; padding-bottom: 5px;}
 
+@media screen and (max-width: 800px) { .post-content h5 {font-weight: bold; font-size: 15px; text-decoration: underline;padding-top: 20px; padding-bottom: 5px;} }
+
+.post-content h6 { font-size: 14px; font-weight: bold; text-decoration: underline;padding-top: 20px; padding-bottom: 5px;}
+
+@media screen and (max-width: 800px) { .post-content h6 {font-weight: bold; font-size: 12px; text-decoration: underline;padding-top: 20px; padding-bottom: 5px;} }
+
+// star cross
 h3:before {
 	content: '\205C   ';
 }
 
+// section sign
 h4:before {
 	content: '\00A7    ';
 }
@@ -66,12 +71,12 @@ h4:after {
 	content: '   \00A7';
 }
 
-
+// black star
 h5:before {
 	content: '\2605    ';
 }
 
-
+// solid square
 h6:before {
 	content: '\2588    ';
 }

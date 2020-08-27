@@ -1,0 +1,105 @@
+# 数学分析基础
+
+每天吃透一个重要的定理：
+
+
+[2020-08-26]
+<div style = "background-color:#e6f2ff" markdown = "1">
+<div style = "padding-left: 12px;" markdown = "1">
+
+
+
+<div style = "background-color:#d0e1e1" markdown = "1">
+###### Cover
+<div style = "padding-left: 12px;" markdown = "1">
+
+ 就是一群 set $$ U_i $$ 的 Union 包括了某个set $$ A$$。
+
+$$
+A \subseteq \cup_{i \in I}^{} U_i \\
+$$
+
+A family of $$ \{ U_i : i \in I \} $$ 就是 cover of set $$A$$
+
+</div>
+<br>
+</div>
+
+<div style = "background-color:#d0e1e1" markdown = "1">
+###### Subcover
+<div style = "padding-left: 12px;" markdown = "1">
+
+两个 $$ A $$ 的 cover  $$ \{ U_i : i \in I \}  \,\,, \{ U_j : j \in J \} $$
+
+如果这两个cover 的, $$ J \subseteq I $$ 那 $$ \{ U_j : j\in J \}$$ 就是另一个的subcover
+</div>
+<br>
+</div>
+
+
+
+<div style = "background-color:#d0e1e1" markdown = "1">
+###### Compact
+<div style = "padding-left: 12px;" markdown = "1">
+If a subset \\(A_{}^{}\\) of a topological space \\(X_{}^{}\\) is __compact__ if every open cover for \\(A_{}^{}\\) has a finite subcover.
+
+Note: Finite subcover 不是说这个 cover 是finite 的, 是有限个open set 的cover
+
+这个确实是个很扯的定义, 我现在还不确定为什么 compact 的性质这么重要, 但它出现的频率确实非常非常高。 
+
+第一个提出 compactness 的人到底是怎么想出来的呢？
+
+</div>
+<br>
+</div>
+ 
+##### The Heine-Borel Theorem
+
+
+__In $$R^k$$__ $$ \text{ closed and bounded } \Leftrightarrow \text{ compact }$$
+
+__In general__ $$ \text{ closed and bounded } \Leftarrow \text{ compact } $$
+
+<u> 例子： (0,1) 不 compact：</u>
+
+证明不compact只要找到反例就可以了, 证明compact会麻烦一点。
+
+我们可以构造一个 open cover $$ \{ ( {\frac{1}{n}} , 1) \vert n \in \mathbb{N} \} $$ 
+
+1- 这是一个open cover： 每一个点$$ x \in (0,1) $$ 我们都能找到至少一个 open set 包含 $$x$$。 <br>
+2- 这个open cover没有有限个subcover, 任何一个 subcover 都是无限的。
+
+<u> bounded and closed 但不是compact的例子：</u>
+
+一般就是设一个 not compact 的集, 因为全集是 即close 又 open, 所以他是closed and bounded 但是不是compact的set。
+
+[StackExchange Example](https://math.stackexchange.com/questions/323033/example-of-a-set-that-is-closed-and-bounded-but-not-compact ":)")
+
+
+<details markdown="1" style="background-color: #f0f0f5">
+<summary> 点我展开证明思路 </summary>
+
+核心的思想是定义一个finite subcover:
+
+比如 $$ u $$ 是一个(open) cover of $$ [a,b]$$, (如果是closed的cover 的话很容易找到finite subcover 简单的分割就可以定义这个subcover。
+
+然后我们定义： $$ G = \{  x \in R : x \ge a \vert \text{ is covered by a finite subfamily of } u \} $$
+
+然后 我们尽力去说明 这个 set $$ G $$ 是包括 b 的: $$ sup G > b $$。
+
+Case 1/2, 如果G是unbounded,trivial。如果G bounded 但是 $$sup G > b$$, trivial
+
+case 3. 如果 G unbounded $$sub G \le b$$ 我们直接证明是contradiction。
+
+
+ 
+</details> 
+</div>
+<br>
+</div>
+
+明天是测度的东西。
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
